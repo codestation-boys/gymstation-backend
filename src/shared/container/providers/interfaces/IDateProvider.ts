@@ -1,6 +1,8 @@
+import DateOrString from '../../../../@types/appTypes/accounts/DateOrString'
+
 interface IDateProvider
 {
-  formatStringToDate(dateISOString: string): Date
+  formatStringToDate(dateISOString: DateOrString): Date
 }
 
 export default IDateProvider
