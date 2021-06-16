@@ -7,7 +7,7 @@ import User from '../../../../accounts/dependencies/typeorm/entities/User'
 class Measures implements IMeasures
 {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id: string
 
   @Column()
   height: number

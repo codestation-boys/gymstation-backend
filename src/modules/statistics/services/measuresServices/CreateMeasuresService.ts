@@ -17,7 +17,7 @@ class CreateMeasuresService
 
   public async execute(measures: CreateMeasures, user_id: string): Promise<void>
   {
-    const userExists = this.userRepository.findById(user_id)
+    const userExists = this.userRepository.getById(user_id)
     if(!userExists) throw new NotFoundError('User not found!')
 
     await this.measuresRepository.create(measures, user_id)
