@@ -2,8 +2,8 @@ import { getRepository, Repository } from 'typeorm'
 
 import IUserRepository from '../../../interfaces/repositories/IUserRepository'
 import User from '../entities/User'
-import IUser from '../../../interfaces/entities/IUser'
 import CreateUserRepo from '../../../../../@types/appTypes/accounts/CreateUserRepo'
+import { Gender } from '../../../interfaces/entities/IUser'
 
 
 class UserRepository implements IUserRepository
@@ -15,21 +15,29 @@ class UserRepository implements IUserRepository
     this.repository = getRepository(User)
   }
 
-  public async findById(id: string): Promise<IUser>
-  {
-    return this.repository.findOne(id)
-  }
-
-  public async findByEmail(email: string): Promise<User>
-  {
-    return this.repository.findOne({ email })
-  }
-
   public async create(userInfo: CreateUserRepo): Promise<void>
   {
     const user = this.repository.create(userInfo)
 
     await this.repository.save(user)
+  }
+
+  public async getById(id: string): Promise<User>
+  {
+    return this.repository.findOne(id)
+  }
+
+  public async getByEmail(email: string): Promise<User>
+  {
+    return this.repository.findOne({ email })
+  }
+
+  public async getUserGender(id: string): Promise<Gender>
+  {
+    const { gender } = await this.repository
+      .findOne(id, { select: ['gender'] })
+
+    return gender 
   }
 }
 

@@ -25,7 +25,7 @@ class CreateAuthenticationService
 
     const [ email, password ] = Buffer.from(hash, 'base64').toString().split(':')
 
-    const userExists = await this.userRepository.findByEmail(email)
+    const userExists = await this.userRepository.getByEmail(email)
     const passwordCorrect = await compare(password, userExists?.password ?? password)
 
     if(!userExists || !passwordCorrect)

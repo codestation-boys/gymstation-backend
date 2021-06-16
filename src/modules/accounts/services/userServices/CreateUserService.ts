@@ -18,7 +18,7 @@ class CreateUserService
 
   public async execute(userInfo: CreateUser): Promise<void>
   {
-    const userAlreadyExists = await this.userRepository.findByEmail(userInfo.email)
+    const userAlreadyExists = await this.userRepository.getByEmail(userInfo.email)
     if(userAlreadyExists) throw new ConflictError('User already exists!')
     
     const password = await this.generatePasswordHash(userInfo.password)
