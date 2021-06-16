@@ -3,9 +3,9 @@ class AppError extends Error {
     readonly message: string,
     readonly statusCode: number
   ) {
-    super(message);
-    Object.setPrototypeOf(this, AppError.prototype);
+    super(message)
+    Object.setPrototypeOf(this, AppError.prototype)
   }
 }
 
-export default AppError;
+export default AppError

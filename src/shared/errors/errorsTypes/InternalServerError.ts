@@ -1,12 +1,12 @@
-import AppError from "./AppError";
+import AppError from './AppError'
 
 class InternalServerError extends AppError
 {
   constructor(readonly message: string)
   {
-    super(message, 500);
-    Object.setPrototypeOf(this, InternalServerError.prototype);
-  };
-};
+    super(message, 500)
+    Object.setPrototypeOf(this, InternalServerError.prototype)
+  }
+}
 
 export default InternalServerError
