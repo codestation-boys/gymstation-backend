@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table} from 'typeorm'
 
 export class CreateMeasures1623781003990 implements MigrationInterface
 {
@@ -9,12 +9,12 @@ export class CreateMeasures1623781003990 implements MigrationInterface
         name: 'measures',
         columns: [
           { name: 'id', type: 'uuid', isPrimary: true, isGenerated: true, generationStrategy: 'uuid' },
+          { name: 'height', type: 'decimal', comment: 'm' },
+          { name: 'weight', type: 'decimal', comment: 'kg' },
+          { name: 'waist', type: 'decimal', comment: 'cm' },
+          { name: 'neck', type: 'decimal', comment: 'cm' },
+          { name: 'hip', type: 'decimal', comment: 'cm', isNullable: true },
           { name: 'user_id', type: 'uuid' },
-          { name: 'height', type: 'integer' },
-          { name: 'weight', type: 'integer' },
-          { name: 'waist', type: 'integer' },
-          { name: 'neck', type: 'integer' },
-          { name: 'hip', type: 'integer', isNullable: true },
           { name: 'created_at', type: 'timestamp', default: 'NOW()' }
         ],
         foreignKeys: [
