@@ -1,10 +1,10 @@
 import { injectable, inject } from 'tsyringe'
 import { genSalt, hash } from 'bcrypt'
 
-import IDateProvider from '../../../shared/container/providers/interfaces/IDateProvider'
-import IUserRepository from '../interfaces/repositories/IUserRepository'
-import CreateUser from '../../../@types/appTypes/accounts/CreateUser'
-import { ConflictError } from '../../../shared/errors/errorsTypes'
+import IDateProvider from '../../../../shared/container/providers/interfaces/IDateProvider'
+import IUserRepository from '../../interfaces/repositories/IUserRepository'
+import CreateUser from '../../../../@types/appTypes/accounts/CreateUser'
+import { ConflictError } from '../../../../shared/errors/errorsTypes'
 
 @injectable()
 class CreateUserService

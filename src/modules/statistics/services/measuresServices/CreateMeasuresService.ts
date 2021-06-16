@@ -1,9 +1,9 @@
 import { inject, injectable } from 'tsyringe'
 
-import CreateMeasures from '../../../@types/appTypes/statistics/CreateMeasures'
-import { NotFoundError } from '../../../shared/errors/errorsTypes'
-import IUserRepository from '../../accounts/interfaces/repositories/IUserRepository'
-import IMeasuresRepository from '../interfaces/repositories/IMeasuresRepository'
+import CreateMeasures from '../../../../@types/appTypes/statistics/CreateMeasures'
+import { NotFoundError } from '../../../../shared/errors/errorsTypes'
+import IUserRepository from '../../../accounts/interfaces/repositories/IUserRepository'
+import IMeasuresRepository from '../../interfaces/repositories/IMeasuresRepository'
 
 @injectable()
 class CreateMeasuresService
