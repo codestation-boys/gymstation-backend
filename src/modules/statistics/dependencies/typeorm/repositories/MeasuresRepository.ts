@@ -14,11 +14,11 @@ class MeasuresRepostiory implements IMeasuresRepository
     this.repository = getRepository(Measures)
   }
 
-  public async create(measures: CreateMeasures, user_id: string): Promise<void>
+  public async create(measures: CreateMeasures, user_id: string): Promise<Measures>
   {
     const userMeasures = this.repository.create({...measures, user_id })
 
-    await this.repository.save(userMeasures)
+    return this.repository.save(userMeasures)
   }
 
   public async getHistoricMeasures(user_id: string, gender: Gender): Promise<Measures[]>

@@ -1,7 +1,8 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
 
 import IMeasures from '../../../interfaces/entities/IMeasures'
 import User from '../../../../accounts/dependencies/typeorm/entities/User'
+import Calculations from './Calculations'
 
 @Entity('measures')
 class Measures implements IMeasures
@@ -27,6 +28,9 @@ class Measures implements IMeasures
   @Column()
   user_id: string
   
+  @OneToOne(() => Calculations, calculations => calculations.measures)
+  calculations: Calculations
+
   @ManyToOne(() => User, user => user.measures)
   @JoinColumn({ name: 'user_id' })
   user: User
