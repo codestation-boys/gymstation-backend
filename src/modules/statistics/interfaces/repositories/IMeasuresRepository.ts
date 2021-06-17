@@ -4,7 +4,7 @@ import IMeasures from '../entities/IMeasures'
 
 interface IMeasuresRepository
 {
-  create(measures: CreateMeasures, user_id: string): Promise<void>
+  create(measures: CreateMeasures, user_id: string): Promise<IMeasures>
   getHistoricMeasures(user_id: string, userGender: Gender): Promise<IMeasures[]>
 }
 
