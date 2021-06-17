@@ -7,13 +7,19 @@ import Tokens from '../../../../@types/appTypes/accounts/Tokens'
 import IUserRepository from '../../interfaces/repositories/IUserRepository'
 import Authentication from '../../../../@types/appTypes/accounts/Authentication'
 import { BadRequestError, UnauthorizedError } from '../../../../shared/errors/errorsTypes'
+import ITokenRepository from '../../interfaces/repositories/ITokenRepository'
+import IDateProvider from '../../../../shared/container/providers/interfaces/IDateProvider'
 
 @injectable()
 class CreateAuthenticationService
 {
   constructor(
     @inject('UserRepository')
-    private userRepository: IUserRepository
+    private userRepository: IUserRepository,
+    @inject('TokenRepository')
+    private tokenRepository: ITokenRepository,
+    @inject('DateProvider')
+    private dateProvider: IDateProvider
   ) {  }
 
   public async execute({ authorization }: Authentication): Promise<Tokens>
@@ -33,18 +39,23 @@ class CreateAuthenticationService
     if(!userExists || !passwordCorrect)
       throw new UnauthorizedError('Invalid email or/and password!')
 
-    const access_payload = {}
-    const access_options: SignOptions = { 
+    const access_token = sign({}, AuthConfig.PRIVATE_ACCESS_KEY, { 
       expiresIn: AuthConfig.ACCESS_EXPIRES,
       subject: userExists.id
-    }
-    const access_token = sign(
-      access_payload,
-      AuthConfig.PRIVATE_ACCESS_KEY,
-      access_options
-    )
+    })
 
-    return { access_token }
+    const refresh_token = sign({}, AuthConfig.PRIVATE_REFRESH_KEY, {
+      expiresIn: AuthConfig.REFRESH_EXPIRES,
+      subject: userExists.id
+    })
+
+    await this.tokenRepository.create({
+      token: refresh_token,
+      user_id: userExists.id,
+      expires_date: this.dateProvider.addDaysToToday(AuthConfig.REFRESH_EXPIRES_NUMBER)
+    })
+
+    return { access_token, refresh_token }
   }
 
   private protectedAtuhentication(auth: Authentication): void
