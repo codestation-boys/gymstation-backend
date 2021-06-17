@@ -8,7 +8,6 @@ This api has public routes and private routes, then there are the categories eac
 - ### Accounts
   `/accounts`
      - `POST` - User creation  
-     <br>
     **Request Example**
         - Body
           ```json
@@ -44,7 +43,6 @@ This api has public routes and private routes, then there are the categories eac
         ```
   `/accounts/login`
      - `POST` - User authentication  
-     <br>
     **Request Example**  
         - Header
           ```json
@@ -87,7 +85,6 @@ This api has public routes and private routes, then there are the categories eac
         ```
   `/accounts/refresh-token`
      - `POST` - Refresh user token  
-     <br>
     **Request Example**  
         - Body
           ```json
@@ -119,7 +116,6 @@ This api has public routes and private routes, then there are the categories eac
 - ### Statistics
   `/statistics/measures`
      - `POST` - Add user measures  
-     <br>
     **Request Example**
         - Body
           ```json
@@ -172,7 +168,6 @@ This api has public routes and private routes, then there are the categories eac
           }
         ```
      - `GET` - Get measures historic 
-     <br>
     **Request Example**
         - Header
           ```json
@@ -223,7 +218,6 @@ This api has public routes and private routes, then there are the categories eac
         ```
   `/statistics/calculations`
      - `GET` - Get calculations historic  
-     <br>
     **Request Example**
         - Header
           ```json
