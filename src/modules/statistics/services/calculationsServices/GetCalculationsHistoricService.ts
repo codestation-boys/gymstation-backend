@@ -4,7 +4,6 @@ import HistoricCalculationsWithUnits from '../../../../@types/appTypes/statistic
 import UnitsMeasure from '../../../../@types/appTypes/statistics/UnitsMeasure'
 import ICalculationsRepository from '../../interfaces/repositories/ICalculationsRepository'
 
-
 @injectable()
 class GetCalculationsHistoricService
 {
