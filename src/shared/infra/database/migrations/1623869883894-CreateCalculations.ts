@@ -12,7 +12,7 @@ export class CreateCalculations1623869883894 implements MigrationInterface
           { name: 'fat_mass', type: 'decimal', comment: 'kg' },
           { name: 'lean_mass', type: 'decimal', comment: 'kg' },
           { name: 'body_mass_index', type: 'decimal', comment: 'kg/m²' },
-          { name: 'body_fat_percentage', type: 'integer', comment: '%' },
+          { name: 'body_fat_percentage', type: 'decimal', comment: '%' },
           { name: 'measures_id', type: 'uuid' },
           { name: 'user_id', type: 'uuid' },
           { name: 'created_at', type: 'timestamp', default: 'NOW()' }
