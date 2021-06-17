@@ -9,6 +9,10 @@ import IDateProvider from '../container/providers/interfaces/IDateProvider'
 import MeasuresRepository from '../../modules/statistics/dependencies/typeorm/repositories/MeasuresRepository'
 import IMeasuresRepository from '../../modules/statistics/interfaces/repositories/IMeasuresRepository'
 
+import CalculationsRepository from '../../modules/statistics/dependencies/typeorm/repositories/CalculationsRepository'
+import ICalculationsRepository from '../../modules/statistics/interfaces/repositories/ICalculationsRepository'
+
 container.registerSingleton<IUserRepository>('UserRepository', UserRepository)
 container.registerSingleton<IDateProvider>('DateProvider', DateProvider)
 container.registerSingleton<IMeasuresRepository>('MeasuresRepository', MeasuresRepository)
+container.registerSingleton<ICalculationsRepository>('CalculationsRepository', CalculationsRepository)

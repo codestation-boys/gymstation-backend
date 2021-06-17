@@ -1,3 +1,4 @@
+import ICalculations from '../../../statistics/interfaces/entities/ICalculations'
 import IMeasures from '../../../statistics/interfaces/entities/IMeasures'
 
 enum Gender
@@ -13,6 +14,7 @@ class IUser
   email: string
   password: string
   gender: Gender
+  calculations: ICalculations[]
   measures: IMeasures[]
   date_birth: Date
   updated_at: Date

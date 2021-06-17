@@ -1,12 +1,12 @@
 import { compare } from 'bcrypt'
+import { inject, injectable } from 'tsyringe'
 import { sign, SignOptions } from 'jsonwebtoken'
 
-import Authentication from '../../../../@types/appTypes/accounts/Authentication'
 import AuthConfig from '../../../../config/AuthConfig'
 import Tokens from '../../../../@types/appTypes/accounts/Tokens'
-import { BadRequestError, UnauthorizedError } from '../../../../shared/errors/errorsTypes'
 import IUserRepository from '../../interfaces/repositories/IUserRepository'
-import { inject, injectable } from 'tsyringe'
+import Authentication from '../../../../@types/appTypes/accounts/Authentication'
+import { BadRequestError, UnauthorizedError } from '../../../../shared/errors/errorsTypes'
 
 @injectable()
 class CreateAuthenticationService
@@ -18,6 +18,8 @@ class CreateAuthenticationService
 
   public async execute({ authorization }: Authentication): Promise<Tokens>
   {
+    this.protectedAtuhentication({ authorization })
+
     const [ hashType, hash ] = authorization.split(' ')
 
     if(hashType !== 'Basic')
@@ -43,6 +45,15 @@ class CreateAuthenticationService
     )
 
     return { access_token }
+  }
+
+  private protectedAtuhentication(auth: Authentication): void
+  {
+    if(!auth.authorization)
+      throw new BadRequestError('Necessary authorization field!')
+
+    if(typeof auth.authorization !== 'string')
+      throw new BadRequestError('Authorization must be a hash')
   }
 }
 
