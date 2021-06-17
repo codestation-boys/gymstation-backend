@@ -3,6 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateCol
 import IUser, { Gender } from '../../../interfaces/entities/IUser'
 import Measures from '../../../../statistics/dependencies/typeorm/entities/Measures'
 import Calculations from '../../../../statistics/dependencies/typeorm/entities/Calculations'
+import Token from './Token'
 
 @Entity('users')
 class User implements IUser
@@ -30,6 +31,9 @@ class User implements IUser
 
   @OneToMany(() => Calculations, calculations => calculations.user)
   calculations: Calculations[]
+
+  @OneToMany(() => Token, token => token.user)
+  tokens: Token[]
 
   @UpdateDateColumn()
   updated_at: Date
