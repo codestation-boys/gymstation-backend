@@ -1,18 +1,18 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm'
 
-export class CreateUserTokens1623944035992 implements MigrationInterface
+export class CreateTokens1623944035992 implements MigrationInterface
 {
   public async up(queryRunner: QueryRunner): Promise<void>
   {
     await queryRunner.createTable(
       new Table({
-        name: 'user_tokens',
+        name: 'tokens',
         columns: [
           { name: 'id', type: 'uuid', isPrimary: true, isGenerated: true, generationStrategy: 'uuid' },
           { name: 'token', type: 'varchar' },
+          { name: 'expires_date', type: 'timestamp' },
           { name: 'user_id', type: 'uuid' },
-          { name: 'created_at', type: 'timestamp', default: 'NOW()' },
-          { name: 'updated_at', type: 'timestamp', default: 'NOW()' }
+          { name: 'created_at', type: 'timestamp', default: 'NOW()' }
         ],
         foreignKeys: [
           {
@@ -30,6 +30,6 @@ export class CreateUserTokens1623944035992 implements MigrationInterface
 
   public async down(queryRunner: QueryRunner): Promise<void>
   {
-    await queryRunner.dropTable('user_tokens')
+    await queryRunner.dropTable('tokens')
   }
 }
