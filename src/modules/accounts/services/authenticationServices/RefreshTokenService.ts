@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe'
-import { sign, SignOptions, verify } from 'jsonwebtoken'
+import { sign, verify } from 'jsonwebtoken'
 
 import AuthConfig from '../../../../config/AuthConfig'
 import Tokens from '../../../../@types/appTypes/accounts/Tokens'

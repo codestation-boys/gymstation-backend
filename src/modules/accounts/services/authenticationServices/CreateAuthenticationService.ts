@@ -1,6 +1,6 @@
 import { compare } from 'bcrypt'
 import { inject, injectable } from 'tsyringe'
-import { sign, SignOptions } from 'jsonwebtoken'
+import { sign } from 'jsonwebtoken'
 
 import AuthConfig from '../../../../config/AuthConfig'
 import Tokens from '../../../../@types/appTypes/accounts/Tokens'
