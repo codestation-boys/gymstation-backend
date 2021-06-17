@@ -12,7 +12,11 @@ import IMeasuresRepository from '../../modules/statistics/interfaces/repositorie
 import CalculationsRepository from '../../modules/statistics/dependencies/typeorm/repositories/CalculationsRepository'
 import ICalculationsRepository from '../../modules/statistics/interfaces/repositories/ICalculationsRepository'
 
+import TokenRepository from '../../modules/accounts/dependencies/typeorm/repositories/TokenRepository'
+import ITokenRepository from '../../modules/accounts/interfaces/repositories/ITokenRepository'
+
 container.registerSingleton<IUserRepository>('UserRepository', UserRepository)
 container.registerSingleton<IDateProvider>('DateProvider', DateProvider)
 container.registerSingleton<IMeasuresRepository>('MeasuresRepository', MeasuresRepository)
 container.registerSingleton<ICalculationsRepository>('CalculationsRepository', CalculationsRepository)
+container.registerSingleton<ITokenRepository>('TokenRepository', TokenRepository)
