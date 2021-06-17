@@ -13,7 +13,7 @@ class AuthenticateUser
   public async handle(request: Request, response: Response, next: NextFunction): Promise<void>
   {
     const { authorization } = request.headers as Authentication
-    if(!authorization) throw new UnauthorizedError('Token missing')
+    if(!authorization) throw new UnauthorizedError('Token missing!')
     
     const [ type, token ] = authorization.split(' ')
 

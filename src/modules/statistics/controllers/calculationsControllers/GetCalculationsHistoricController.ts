@@ -12,7 +12,7 @@ class GetCalculationsHistoricController
     const getCalculationsHistoricService = container.resolve(GetCalculationsHistoricService)
     const calculationsHistoric = await getCalculationsHistoricService.execute(user_id)
 
-    return response.json({ calculationsHistoric })
+    return response.json(calculationsHistoric)
   }
 }
 

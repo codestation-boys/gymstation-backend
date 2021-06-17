@@ -4,7 +4,7 @@ import UnitsMeasure from './UnitsMeasure'
 interface MeasuresWithUnits
 {
   unitsMeasure: UnitsMeasure
-  historicMeasures: Promise<IMeasures[]>
+  historicMeasures: IMeasures[]
 }
 
 export default MeasuresWithUnits

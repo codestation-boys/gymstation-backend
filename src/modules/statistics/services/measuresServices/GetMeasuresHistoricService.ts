@@ -20,9 +20,8 @@ class GetMeasuresHistoricService
   {
     const userGender = await this.userRepository.getUserGender(user_id)
     const unitsMeasure = this.getUnisMeasure(userGender)
-    const historicMeasures = this.measuresRepository
+    const historicMeasures = await this.measuresRepository
       .getHistoricMeasures(user_id, userGender)
-
 
     return { unitsMeasure, historicMeasures }
   }

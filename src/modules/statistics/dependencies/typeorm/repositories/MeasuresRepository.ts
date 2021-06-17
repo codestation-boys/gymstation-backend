@@ -35,6 +35,7 @@ class MeasuresRepostiory implements IMeasuresRepository
       where: { user_id },
       order: { created_at: 'ASC' }
     }) 
+
   }
 }
 

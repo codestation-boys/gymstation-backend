@@ -15,7 +15,7 @@ class GetCalculationsHistoricService
   public async execute(user_id: string): Promise<HistoricCalculationsWithUnits>
   {
     const unitsMeasure = this.getUnisMeasure()
-    const historicCalculations = this.calculationsRepository
+    const historicCalculations = await this.calculationsRepository
       .getCalculationsHistoric(user_id)
 
 

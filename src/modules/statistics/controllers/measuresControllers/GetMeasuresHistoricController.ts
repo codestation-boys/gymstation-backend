@@ -11,7 +11,7 @@ class GetMeasuresHistoricController
     const getMeasuresHistoricService = container.resolve(GetMeasuresHistoricService)
     const measuresHistoric = await getMeasuresHistoricService.execute(user_id)
 
-    return response.json({ measuresHistoric })
+    return response.json(measuresHistoric)
   }
 }
 
