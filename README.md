@@ -27,18 +27,18 @@ This api has public routes and private routes, then there are the categories eac
         - Conflict - `409`
         ```json
           {
-            "message": "User already exists!"
+            "message": "User already exists"
           }
         ```
         - Bad Request - `400`
         ```json
           {
-            "message": "Necessary all fields!"
+            "message": "Necessary all fields"
           }
         ```
         ```json
           {
-            "message": "Necessary correct field types!"
+            "message": "Necessary correct field types"
           }
         ```
   `/accounts/login`
@@ -70,18 +70,18 @@ This api has public routes and private routes, then there are the categories eac
         - Unautorized - `401`
         ```json
           {
-            "message": "Invalid email or/and password!"
+            "message": "Invalid email or/and password"
           }
         ```
         - Bad Request - `400`
         ```json
           {
-            "message": "Necessary authorization field!"
+            "message": "Necessary authorization field"
           }
         ```
         ```json
           {
-            "message": "Necessary Basic Authentication!"
+            "message": "Necessary Basic Authentication"
           }
         ```
         ```json
@@ -116,13 +116,13 @@ This api has public routes and private routes, then there are the categories eac
         - Unautorized - `401`
         ```json
           {
-            "message": "Invalid refresh token!"
+            "message": "Invalid refresh token"
           }
         ```
         - Not Found - `404`
         ```json
           {
-            "message": "Refresh token not found!"
+            "message": "Refresh token not found"
           }
         ```
 - ### Statistics
@@ -154,29 +154,29 @@ This api has public routes and private routes, then there are the categories eac
         - Not Found - `404`
         ```json
           {
-            "message": "User not found!"
+            "message": "User not found"
           }
         ```
         - Unautorized - `401`
         ```json
           {
-            "message": "Token missing!"
+            "message": "Token missing"
           }
         ```
         ```json
           {
-            "message": "Necessary Bearer Authentication!"
+            "message": "Necessary Bearer Authentication"
           }
         ```
         - Bad Request - `400`
         ```json
           {
-            "message": "Necessary all fields!"
+            "message": "Necessary all fields"
           }
         ```
         ```json
           {
-            "message": "Necessary correct field types!"
+            "message": "Necessary correct field types"
           }
         ```
      - `GET` - Get measures historic 
@@ -220,12 +220,12 @@ This api has public routes and private routes, then there are the categories eac
         - Unautorized - `401`
         ```json
           {
-            "message": "Token missing!"
+            "message": "Token missing"
           }
         ```
         ```json
           {
-            "message": "Necessary Bearer Authentication!"
+            "message": "Necessary Bearer Authentication"
           }
         ```
   `/statistics/calculations`
@@ -270,11 +270,11 @@ This api has public routes and private routes, then there are the categories eac
          - Unautorized - `401`
         ```json
           {
-            "message": "Token missing!"
+            "message": "Token missing"
           }
         ```
         ```json
           {
-            "message": "Necessary Bearer Authentication!"
+            "message": "Necessary Bearer Authentication"
           }
         ```

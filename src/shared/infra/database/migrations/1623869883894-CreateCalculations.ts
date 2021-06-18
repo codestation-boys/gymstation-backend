@@ -23,6 +23,6 @@ export class CreateCalculations1623869883894 implements MigrationInterface
 
   public async down(queryRunner: QueryRunner): Promise<void>
   {
-
+    await queryRunner.dropTable('calculations')
   }
 }
