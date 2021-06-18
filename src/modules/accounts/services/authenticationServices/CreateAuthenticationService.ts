@@ -9,6 +9,7 @@ import Authentication from '@appTypes/accounts/Authentication'
 import { BadRequestError, UnauthorizedError } from '@shared/errors/errorsTypes'
 import ITokenRepository from '@accounts/interfaces/repositories/ITokenRepository'
 import IDateProvider from '@shared/container/providers/interfaces/IDateProvider'
+import IUser from '@accounts/interfaces/entities/IUser'
 
 @injectable()
 class CreateAuthenticationService
@@ -49,13 +50,20 @@ class CreateAuthenticationService
       subject: userExists.id
     })
 
+    const user_data = {
+      email,
+      name: userExists.name,
+      gender: userExists.gender,
+      date_birth: userExists.date_birth
+    } as IUser
+
     await this.tokenRepository.create({
       token: refresh_token,
       user_id: userExists.id,
       expires_date: this.dateProvider.addDaysToToday(AuthConfig.REFRESH_EXPIRES_NUMBER)
     })
 
-    return { access_token, refresh_token }
+    return { access_token, refresh_token, user_data }
   }
 
   private protectedAtuhentication(auth: Authentication): void

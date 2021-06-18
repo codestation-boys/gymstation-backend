@@ -7,6 +7,8 @@ import Decoded from '@appTypes/accounts/Decoded'
 import ITokenRepository from '@accounts/interfaces/repositories/ITokenRepository'
 import IDateProvider from '@shared/container/providers/interfaces/IDateProvider'
 import { NotFoundError, UnauthorizedError } from '@shared/errors/errorsTypes'
+import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
+import IUser from '@accounts/interfaces/entities/IUser'
 
 @injectable()
 class RefreshTokenService
@@ -14,6 +16,8 @@ class RefreshTokenService
   constructor(
     @inject('TokenRepository')
     private tokenRepository: ITokenRepository,
+    @inject('UserRepository')
+    private userRepository: IUserRepository,
     @inject('DateProvider')
     private dateProvider: IDateProvider
   ) {  }
@@ -40,6 +44,15 @@ class RefreshTokenService
       subject: user_id
     })
 
+    const userExists = await this.userRepository.getById(user_id)
+
+    const user_data = {
+      email: userExists.email,
+      name: userExists.name,
+      gender: userExists.gender,
+      date_birth: userExists.date_birth
+    } as IUser
+
     await Promise.all([
       this.tokenRepository.deleteById(tokenExists.id),
       this.tokenRepository.create({
@@ -50,7 +63,7 @@ class RefreshTokenService
     ])
 
 
-    return { access_token, refresh_token }
+    return { access_token, refresh_token, user_data }
   }
 }
 
