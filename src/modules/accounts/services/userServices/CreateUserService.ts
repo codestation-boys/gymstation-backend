@@ -24,6 +24,7 @@ class CreateUserService
       this.generatePasswordHash(userInfo.password),
       this.verifyUserAlreadyExists(userInfo.email)
     ])
+    
     const date_birth = this.dateProvider
       .formatStringToDate(userInfo.date_birth)
     

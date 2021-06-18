@@ -15,8 +15,8 @@ class VerifyUserExistsService
 
   public async execute({ user_id, email }: VerificateUser): Promise<IUser>
   {
-    const userById = this.userRepository.getById(user_id)
-    const userByEmail = this.userRepository.getByEmail(email)
+    const userById = await this.userRepository.getById(user_id)
+    const userByEmail = await this.userRepository.getByEmail(email)
 
     if(!userById && !userByEmail)
       throw new BadRequestError('User not found')

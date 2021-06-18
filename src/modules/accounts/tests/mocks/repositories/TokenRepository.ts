@@ -33,7 +33,7 @@ class TokenRepository implements ITokenRepository
   }
 
   public async deleteById(id: string): Promise<void>
-  {
+  { 
     const tokenIndex = this.repository.findIndex(token => token.id === id)
     this.repository.splice(tokenIndex, 1)
   }
