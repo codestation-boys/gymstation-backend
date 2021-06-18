@@ -57,7 +57,13 @@ This api has public routes and private routes, then there are the categories eac
         ```json
         {
           "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjM5NjIyNjIsImV4cCI6MTYyMzk2MzQ2Miwic3ViIjoiMTRhMGNiNTYtYjA5Ny00ZmFkLTg2NTAtNjI0YzYzMTc0ZWI2In0.e4WkZKBA-MGsb37GDkObltCYJHG6htBQq8pS63Ps2z4",
-          "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjM5NjIyNjIsImV4cCI6MTYyNjU1NDI2Miwic3ViIjoiMTRhMGNiNTYtYjA5Ny00ZmFkLTg2NTAtNjI0YzYzMTc0ZWI2In0.6ddMi-0scwlBwYEElMWQqd8If8Ls2A9FXHxP3sFDHZQ"
+          "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjM5NjIyNjIsImV4cCI6MTYyNjU1NDI2Miwic3ViIjoiMTRhMGNiNTYtYjA5Ny00ZmFkLTg2NTAtNjI0YzYzMTc0ZWI2In0.6ddMi-0scwlBwYEElMWQqd8If8Ls2A9FXHxP3sFDHZQ",
+          "user_data": {
+            "email": "nome@mail.com",
+            "name": "Nome Qualquer",
+            "gender": "male",
+            "date_birth": "2021-06-15T16:51:15.837Z"
+          }
         }
         
         ```
@@ -97,7 +103,13 @@ This api has public routes and private routes, then there are the categories eac
         ```json
         {
           "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjM5NTU1MjAsImV4cCI6MTYyMzk1NTU1MCwic3ViIjoiYjQxZGQ0YjUtZGExMS00MWYyLTgwMWMtMDZhMDExMGU3ZGIyIn0.48OQ_3G5PWZAacspWZHOPp5L4On5aIgSPQ3bx0PZ0zI",
-          "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjM5NTU1MjAsImV4cCI6MTYyNjU0NzUyMCwic3ViIjoiYjQxZGQ0YjUtZGExMS00MWYyLTgwMWMtMDZhMDExMGU3ZGIyIn0.0dhlT9tFe5Cp072lSAIyB67IHGySf1ULaCNOTz26WHE"
+          "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjM5NTU1MjAsImV4cCI6MTYyNjU0NzUyMCwic3ViIjoiYjQxZGQ0YjUtZGExMS00MWYyLTgwMWMtMDZhMDExMGU3ZGIyIn0.0dhlT9tFe5Cp072lSAIyB67IHGySf1ULaCNOTz26WHE",
+          "user_data": {
+            "email": "nome@mail.com",
+            "name": "Nome Qualquer",
+            "gender": "male",
+            "date_birth": "2021-06-15T16:51:15.837Z"
+          }
         }
         
         ```
