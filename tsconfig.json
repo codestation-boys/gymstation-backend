@@ -7,6 +7,15 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@accounts/*": ["modules/accounts/*"],
+      "@statistics/*": ["modules/statistics/*"],
+      "@shared/*": ["shared/*"],
+      "@config/*": ["config/*"],
+      "@utils/*": ["utils/*"],
+      "@appTypes/*": ["@types/appTypes/*"]
+    }
   }
 }

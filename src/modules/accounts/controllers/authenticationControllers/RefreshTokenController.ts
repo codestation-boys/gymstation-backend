@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe'
-import RefreshTokenService from '../../services/authenticationServices/RefreshTokenService'
+
+import RefreshTokenService from '@accounts/services/authenticationServices/RefreshTokenService'
 
 class RefreshTokenController
 {

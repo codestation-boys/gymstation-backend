@@ -1,8 +1,8 @@
 import { getRepository, Repository } from 'typeorm'
-import UsersToken from '../../../../../@types/appTypes/accounts/UsersToken'
 
-import ITokenRepository from '../../../interfaces/repositories/ITokenRepository'
 import Token from '../entities/Token'
+import UsersToken from '@appTypes/accounts/UsersToken'
+import ITokenRepository from '@accounts/interfaces/repositories/ITokenRepository'
 
 class TokenRepository implements ITokenRepository
 {

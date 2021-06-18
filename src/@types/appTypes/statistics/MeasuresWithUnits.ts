@@ -1,4 +1,4 @@
-import IMeasures from '../../../modules/statistics/interfaces/entities/IMeasures'
+import IMeasures from '@statistics/interfaces/entities/IMeasures'
 import UnitsMeasure from './UnitsMeasure'
 
 interface MeasuresWithUnits

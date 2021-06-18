@@ -1,4 +1,4 @@
-import FatMass from '../@types/appTypes/statistics/FatMass'
+import FatMass from '@appTypes/statistics/FatMass'
 
 class CalculateFatMass
 {

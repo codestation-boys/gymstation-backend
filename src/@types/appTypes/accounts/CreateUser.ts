@@ -1,4 +1,4 @@
-import { Gender } from '../../../modules/accounts/interfaces/entities/IUser'
+import { Gender } from '@accounts/interfaces/entities/IUser'
 
 interface CreateUser
 {

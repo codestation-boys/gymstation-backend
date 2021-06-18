@@ -2,13 +2,13 @@ import { compare } from 'bcrypt'
 import { inject, injectable } from 'tsyringe'
 import { sign } from 'jsonwebtoken'
 
-import AuthConfig from '../../../../config/AuthConfig'
-import Tokens from '../../../../@types/appTypes/accounts/Tokens'
-import IUserRepository from '../../interfaces/repositories/IUserRepository'
-import Authentication from '../../../../@types/appTypes/accounts/Authentication'
-import { BadRequestError, UnauthorizedError } from '../../../../shared/errors/errorsTypes'
-import ITokenRepository from '../../interfaces/repositories/ITokenRepository'
-import IDateProvider from '../../../../shared/container/providers/interfaces/IDateProvider'
+import AuthConfig from '@config/AuthConfig'
+import Tokens from '@appTypes/accounts/Tokens'
+import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
+import Authentication from '@appTypes/accounts/Authentication'
+import { BadRequestError, UnauthorizedError } from '@shared/errors/errorsTypes'
+import ITokenRepository from '@accounts/interfaces/repositories/ITokenRepository'
+import IDateProvider from '@shared/container/providers/interfaces/IDateProvider'
 
 @injectable()
 class CreateAuthenticationService
@@ -29,7 +29,7 @@ class CreateAuthenticationService
     const [ hashType, hash ] = authorization.split(' ')
 
     if(hashType !== 'Basic')
-      throw new BadRequestError('Necessary Basic Authentication!')
+      throw new BadRequestError('Necessary Basic Authentication')
 
     const [ email, password ] = Buffer.from(hash, 'base64').toString().split(':')
 
@@ -37,7 +37,7 @@ class CreateAuthenticationService
     const passwordCorrect = await compare(password, userExists?.password ?? password)
 
     if(!userExists || !passwordCorrect)
-      throw new UnauthorizedError('Invalid email or/and password!')
+      throw new UnauthorizedError('Invalid email or/and password')
 
     const access_token = sign({}, AuthConfig.PRIVATE_ACCESS_KEY, { 
       expiresIn: AuthConfig.ACCESS_EXPIRES,
@@ -61,7 +61,7 @@ class CreateAuthenticationService
   private protectedAtuhentication(auth: Authentication): void
   {
     if(!auth.authorization)
-      throw new BadRequestError('Necessary authorization field!')
+      throw new BadRequestError('Necessary authorization field')
 
     if(typeof auth.authorization !== 'string')
       throw new BadRequestError('Authorization must be a hash')

@@ -1,10 +1,10 @@
 import { container, inject, injectable } from 'tsyringe'
 
-import CreateMeasures from '../../../../@types/appTypes/statistics/CreateMeasures'
-import IUserRepository from '../../../accounts/interfaces/repositories/IUserRepository'
-import IMeasuresRepository from '../../interfaces/repositories/IMeasuresRepository'
+import CreateMeasures from '@appTypes/statistics/CreateMeasures'
+import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
+import IMeasuresRepository from '@statistics/interfaces/repositories/IMeasuresRepository'
 import CreateCalculationsService from '../calculationsServices/CreateCalculationsService'
-import { BadRequestError, NotFoundError } from '../../../../shared/errors/errorsTypes'
+import { BadRequestError, NotFoundError } from '@shared/errors/errorsTypes'
 
 @injectable()
 class CreateMeasuresService
@@ -21,7 +21,7 @@ class CreateMeasuresService
     this.protectedCreateMeasures(measures)
 
     const userExists = await this.userRepository.getById(user_id)
-    if(!userExists) throw new NotFoundError('User not found!')
+    if(!userExists) throw new NotFoundError('User not found')
 
     const newMeasures = await this.measuresRepository
       .create(measures, user_id)
@@ -44,10 +44,10 @@ class CreateMeasuresService
       || typeof measures.neck !== 'number'
 
     if(someFieldIsNull)
-      throw new BadRequestError('Necessary all fields!')
+      throw new BadRequestError('Necessary all fields')
     
     if(someFieldIsNotString)
-      throw new BadRequestError('Necessary correct field types!')
+      throw new BadRequestError('Necessary correct field types')
   }
 }
 

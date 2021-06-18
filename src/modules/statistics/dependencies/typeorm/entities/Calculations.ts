@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
 
-import ICalculations from '../../../interfaces/entities/ICalculations'
-import User from '../../../../accounts/dependencies/typeorm/entities/User'
+import ICalculations from '@statistics/interfaces/entities/ICalculations'
+import User from '@accounts/dependencies/typeorm/entities/User'
 import Measures from './Measures'
 
 

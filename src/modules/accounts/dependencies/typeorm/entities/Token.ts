@@ -1,6 +1,6 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
 
-import IToken from '../../../interfaces/entities/IToken'
+import IToken from '@accounts/interfaces/entities/IToken'
 import User from './User'
 
 @Entity('tokens')

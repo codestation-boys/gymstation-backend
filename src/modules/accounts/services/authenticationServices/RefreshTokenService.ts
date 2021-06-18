@@ -1,12 +1,12 @@
 import { inject, injectable } from 'tsyringe'
 import { sign, verify } from 'jsonwebtoken'
 
-import AuthConfig from '../../../../config/AuthConfig'
-import Tokens from '../../../../@types/appTypes/accounts/Tokens'
-import Decoded from '../../../../@types/appTypes/accounts/Decoded'
-import ITokenRepository from '../../interfaces/repositories/ITokenRepository'
-import IDateProvider from '../../../../shared/container/providers/interfaces/IDateProvider'
-import { NotFoundError, UnauthorizedError } from '../../../../shared/errors/errorsTypes'
+import AuthConfig from '@config/AuthConfig'
+import Tokens from '@appTypes/accounts/Tokens'
+import Decoded from '@appTypes/accounts/Decoded'
+import ITokenRepository from '@accounts/interfaces/repositories/ITokenRepository'
+import IDateProvider from '@shared/container/providers/interfaces/IDateProvider'
+import { NotFoundError, UnauthorizedError } from '@shared/errors/errorsTypes'
 
 @injectable()
 class RefreshTokenService
@@ -21,14 +21,14 @@ class RefreshTokenService
   public async execute(token: string): Promise<Tokens>
   {
     const decoded = verify(token, AuthConfig.PRIVATE_REFRESH_KEY) as Decoded
-    if(!decoded) throw new UnauthorizedError('Invalid refresh token!')
+    if(!decoded) throw new UnauthorizedError('Invalid refresh token')
 
     const user_id = decoded.sub
 
     const tokenExists = await this.tokenRepository
       .findByTokenAndUser({ token, user_id }) 
 
-    if(!tokenExists) throw new NotFoundError('Refresh token not found!')
+    if(!tokenExists) throw new NotFoundError('Refresh token not found')
 
     const access_token = sign({}, AuthConfig.PRIVATE_ACCESS_KEY, { 
       expiresIn: AuthConfig.ACCESS_EXPIRES,

@@ -1,4 +1,4 @@
-import ICalculations from '../../../modules/statistics/interfaces/entities/ICalculations'
+import ICalculations from '@statistics/interfaces/entities/ICalculations'
 import UnitsMeasure from './UnitsMeasure'
 
 interface HistoricCalculationsWithUnits

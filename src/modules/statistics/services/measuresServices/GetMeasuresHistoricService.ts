@@ -1,10 +1,10 @@
 import { inject, injectable } from 'tsyringe'
 
-import { Gender } from '../../../accounts/interfaces/entities/IUser'
-import UnitsMeasure from '../../../../@types/appTypes/statistics/UnitsMeasure'
-import IMeasuresRepository from '../../interfaces/repositories/IMeasuresRepository'
-import IUserRepository from '../../../accounts/interfaces/repositories/IUserRepository'
-import MeasuresWithUnits from '../../../../@types/appTypes/statistics/MeasuresWithUnits'
+import { Gender } from '@accounts/interfaces/entities/IUser'
+import UnitsMeasure from '@appTypes/statistics/UnitsMeasure'
+import IMeasuresRepository from '@statistics/interfaces/repositories/IMeasuresRepository'
+import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
+import MeasuresWithUnits from '@appTypes/statistics/MeasuresWithUnits'
 
 @injectable()
 class GetMeasuresHistoricService

@@ -1,9 +1,9 @@
 import { getRepository, Repository } from 'typeorm'
 
-import IUserRepository from '../../../interfaces/repositories/IUserRepository'
 import User from '../entities/User'
-import CreateUserRepo from '../../../../../@types/appTypes/accounts/CreateUserRepo'
-import { Gender } from '../../../interfaces/entities/IUser'
+import { Gender } from '@accounts/interfaces/entities/IUser'
+import CreateUserRepo from '@appTypes/accounts/CreateUserRepo'
+import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
 
 
 class UserRepository implements IUserRepository

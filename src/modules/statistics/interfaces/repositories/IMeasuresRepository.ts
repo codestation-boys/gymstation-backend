@@ -1,5 +1,5 @@
-import CreateMeasures from '../../../../@types/appTypes/statistics/CreateMeasures'
-import { Gender } from '../../../accounts/interfaces/entities/IUser'
+import CreateMeasures from '@appTypes/statistics/CreateMeasures'
+import { Gender } from '@accounts/interfaces/entities/IUser'
 import IMeasures from '../entities/IMeasures'
 
 interface IMeasuresRepository

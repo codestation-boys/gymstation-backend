@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe'
 
-import Authentication from '../../../../@types/appTypes/accounts/Authentication'
-import CreateAuthenticationService from '../../services/authenticationServices/CreateAuthenticationService'
+import Authentication from '@appTypes/accounts/Authentication'
+import CreateAuthenticationService from '@accounts/services/authenticationServices/CreateAuthenticationService'
 
 class CreateAuthenticationController
 {

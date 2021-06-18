@@ -1,9 +1,9 @@
 import { Router } from 'express'
 
 import authenticateUser from '../middlewares/AuthenticateUser'
-import getMeasuresHistoricController from '../../../../modules/statistics/controllers/measuresControllers/GetMeasuresHistoricController'
-import createMeasuresController from '../../../../modules/statistics/controllers/measuresControllers/CreateMeasuresController'
-import getCalculationsHistoricController from '../../../../modules/statistics/controllers/calculationsControllers/GetCalculationsHistoricController'
+import getMeasuresHistoricController from '@statistics/controllers/measuresControllers/GetMeasuresHistoricController'
+import createMeasuresController from '@statistics/controllers/measuresControllers/CreateMeasuresController'
+import getCalculationsHistoricController from '@statistics/controllers/calculationsControllers/GetCalculationsHistoricController'
 
 const statisticsRoutes = Router()
 

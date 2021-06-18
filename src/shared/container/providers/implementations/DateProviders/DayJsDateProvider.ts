@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 
-import IDateProvider from '../../interfaces/IDateProvider'
+import IDateProvider from '@shared/container/providers/interfaces/IDateProvider'
 class DayJsDateProvider implements IDateProvider
 {
   public addDaysToToday(days: number): Date

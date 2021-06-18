@@ -1,5 +1,4 @@
-import { Secret, SignOptions } from 'jsonwebtoken'
-import Payload from '../@types/appTypes/accounts/Payload'
+import { Secret } from 'jsonwebtoken'
 
 class AuthConfig
 {

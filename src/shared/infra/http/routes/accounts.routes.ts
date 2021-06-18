@@ -1,8 +1,8 @@
 import { Router } from 'express'
 
-import createUserController from '../../../../modules/accounts/controllers/userControllers/CreateUserController'
-import createAuthenticationController from '../../../../modules/accounts/controllers/authenticationControllers/CreateAuthenticationController'
-import refreshTokenController from '../../../../modules/accounts/controllers/authenticationControllers/RefreshTokenController'
+import createUserController from '@accounts/controllers/userControllers/CreateUserController'
+import createAuthenticationController from '@accounts/controllers/authenticationControllers/CreateAuthenticationController'
+import refreshTokenController from '@accounts/controllers/authenticationControllers/RefreshTokenController'
 
 const accountsRoutes = Router()
 

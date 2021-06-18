@@ -1,9 +1,9 @@
-import { FindConditions, FindManyOptions, getRepository, Repository } from 'typeorm'
+import { getRepository, Repository } from 'typeorm'
 
-import IMeasuresRepository from '../../../interfaces/repositories/IMeasuresRepository'
-import CreateMeasures from '../../../../../@types/appTypes/statistics/CreateMeasures'
+import IMeasuresRepository from '@statistics/interfaces/repositories/IMeasuresRepository'
+import CreateMeasures from '@appTypes/statistics/CreateMeasures'
 import Measures from '../entities/Measures'
-import { Gender } from '../../../../accounts/interfaces/entities/IUser'
+import { Gender } from '@accounts/interfaces/entities/IUser'
 
 class MeasuresRepostiory implements IMeasuresRepository
 {
@@ -35,7 +35,6 @@ class MeasuresRepostiory implements IMeasuresRepository
       where: { user_id },
       order: { created_at: 'ASC' }
     }) 
-
   }
 }
 

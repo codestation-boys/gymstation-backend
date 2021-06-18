@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe'
-import GetMeasuresHistoricService from '../../services/measuresServices/GetMeasuresHistoricService'
+
+import GetMeasuresHistoricService from '@statistics/services/measuresServices/GetMeasuresHistoricService'
 
 class GetMeasuresHistoricController
 {

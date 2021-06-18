@@ -1,4 +1,4 @@
-import CreateUserRepo from '../../../../@types/appTypes/accounts/CreateUserRepo'
+import CreateUserRepo from '@appTypes/accounts/CreateUserRepo'
 import IUser, { Gender } from '../entities/IUser'
 
 interface IUserRepository

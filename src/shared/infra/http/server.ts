@@ -1,5 +1,5 @@
-import '../../../config/enviroment'
-import '../../../config/connection'
+import '@config/enviroment'
+import '@config/connection'
 
 import app from './app'
 

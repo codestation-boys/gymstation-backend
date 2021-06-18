@@ -1,4 +1,4 @@
-import UsersToken from '../../../../@types/appTypes/accounts/UsersToken'
+import UsersToken from '@appTypes/accounts/UsersToken'
 import IToken from '../entities/IToken'
 
 interface ITokenRepository

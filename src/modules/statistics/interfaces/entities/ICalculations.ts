@@ -1,4 +1,4 @@
-import IUser from '../../../accounts/interfaces/entities/IUser'
+import IUser from '@accounts/interfaces/entities/IUser'
 import IMeasures from './IMeasures'
 
 interface ICalculations

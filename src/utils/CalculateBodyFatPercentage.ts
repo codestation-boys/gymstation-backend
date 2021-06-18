@@ -1,5 +1,5 @@
-import { Gender } from '../modules/accounts/interfaces/entities/IUser'
-import BodyFatPercentage from '../@types/appTypes/statistics/BodyFatPercentage'
+import { Gender } from '@accounts/interfaces/entities/IUser'
+import BodyFatPercentage from '@appTypes/statistics/BodyFatPercentage'
 
 class CalculateBodyFatPercentage
 {

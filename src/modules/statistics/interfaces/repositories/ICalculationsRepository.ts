@@ -1,4 +1,4 @@
-import CreateCalculations from '../../../../@types/appTypes/statistics/CreateCalculations'
+import CreateCalculations from '@appTypes/statistics/CreateCalculations'
 import ICalculations from '../entities/ICalculations'
 
 interface ICalculationsRepository

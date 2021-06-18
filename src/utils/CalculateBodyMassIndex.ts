@@ -1,4 +1,4 @@
-import BodyMassIndex from '../@types/appTypes/statistics/BodyMassIndex'
+import BodyMassIndex from '@appTypes/statistics/BodyMassIndex'
 
 class CalculateBodyMassIndex
 {

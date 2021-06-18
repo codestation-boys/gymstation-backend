@@ -1,5 +1,5 @@
-import ICalculations from '../../../statistics/interfaces/entities/ICalculations'
-import IMeasures from '../../../statistics/interfaces/entities/IMeasures'
+import ICalculations from '@statistics/interfaces/entities/ICalculations'
+import IMeasures from '@statistics/interfaces/entities/IMeasures'
 import IToken from './IToken'
 
 enum Gender

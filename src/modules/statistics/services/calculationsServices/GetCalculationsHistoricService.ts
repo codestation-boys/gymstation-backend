@@ -1,8 +1,8 @@
 import { inject, injectable } from 'tsyringe'
 
-import HistoricCalculationsWithUnits from '../../../../@types/appTypes/statistics/HistoricCalculationsWithUnits'
-import UnitsMeasure from '../../../../@types/appTypes/statistics/UnitsMeasure'
-import ICalculationsRepository from '../../interfaces/repositories/ICalculationsRepository'
+import HistoricCalculationsWithUnits from '@appTypes/statistics/HistoricCalculationsWithUnits'
+import UnitsMeasure from '@appTypes/statistics/UnitsMeasure'
+import ICalculationsRepository from '@statistics/interfaces/repositories/ICalculationsRepository'
 
 @injectable()
 class GetCalculationsHistoricService

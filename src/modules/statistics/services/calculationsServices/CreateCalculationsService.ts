@@ -1,14 +1,14 @@
 import { inject, injectable } from 'tsyringe'
 
-import CreateCalculations from '../../../../@types/appTypes/statistics/CreateCalculations'
-import { Gender } from '../../../accounts/interfaces/entities/IUser'
-import IMeasures from '../../interfaces/entities/IMeasures'
-import ICalculationsRepository from '../../interfaces/repositories/ICalculationsRepository'
-import calculateBodyFatPercentage from '../../../../utils/CalculateBodyFatPercentage'
-import calculateBodyMassIndex from '../../../../utils/CalculateBodyMassIndex'
-import calculateLeanMass from '../../../../utils/CalculateLeanMass'
-import calculateFatMass from '../../../../utils/CalculateFatMass'
-import { BadRequestError } from '../../../../shared/errors/errorsTypes'
+import CreateCalculations from '@appTypes/statistics/CreateCalculations'
+import { Gender } from '@accounts/interfaces/entities/IUser'
+import IMeasures from '@statistics/interfaces/entities/IMeasures'
+import ICalculationsRepository from '@statistics/interfaces/repositories/ICalculationsRepository'
+import calculateBodyFatPercentage from '@utils/CalculateBodyFatPercentage'
+import calculateBodyMassIndex from '@utils/CalculateBodyMassIndex'
+import calculateLeanMass from '@utils/CalculateLeanMass'
+import calculateFatMass from '@utils/CalculateFatMass'
+import { BadRequestError } from '@shared/errors/errorsTypes'
 
 @injectable()
 class CreateCalculationsService

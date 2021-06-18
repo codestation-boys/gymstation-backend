@@ -1,4 +1,4 @@
-import LeanMass from '../@types/appTypes/statistics/LeanMass'
+import LeanMass from '@appTypes/statistics/LeanMass'
 
 class CalculateLeanMass
 {

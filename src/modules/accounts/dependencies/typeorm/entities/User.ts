@@ -1,8 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, OneToMany } from 'typeorm'
 
-import IUser, { Gender } from '../../../interfaces/entities/IUser'
-import Measures from '../../../../statistics/dependencies/typeorm/entities/Measures'
-import Calculations from '../../../../statistics/dependencies/typeorm/entities/Calculations'
+import IUser, { Gender } from '@accounts/interfaces/entities/IUser'
+import Measures from '@statistics/dependencies/typeorm/entities/Measures'
+import Calculations from '@statistics/dependencies/typeorm/entities/Calculations'
 import Token from './Token'
 
 @Entity('users')

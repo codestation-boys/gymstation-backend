@@ -1,7 +1,7 @@
 import { Response, Request } from 'express'
 import { container } from 'tsyringe'
 
-import CreateUserService from '../../services/userServices/CreateUserService'
+import CreateUserService from '@accounts/services/userServices/CreateUserService'
 
 class CreateUserController
 {

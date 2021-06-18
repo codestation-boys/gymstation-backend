@@ -2,23 +2,23 @@ import { NextFunction, Request, Response } from 'express'
 import { verify } from 'jsonwebtoken'
 import { container } from 'tsyringe'
 
-import Authentication from '../../../../@types/appTypes/accounts/Authentication'
-import Decoded from '../../../../@types/appTypes/accounts/Decoded'
-import AuthConfig from '../../../../config/AuthConfig'
-import VerifyUserExistsService from '../../../../modules/accounts/services/userServices/VerifyUserExistsService'
-import { UnauthorizedError } from '../../../errors/errorsTypes'
+import Authentication from '@appTypes/accounts/Authentication'
+import Decoded from '@appTypes/accounts/Decoded'
+import AuthConfig from '@config/AuthConfig'
+import VerifyUserExistsService from '@accounts/services/userServices/VerifyUserExistsService'
+import { UnauthorizedError } from '@shared/errors/errorsTypes'
 
 class AuthenticateUser
 {
   public async handle(request: Request, response: Response, next: NextFunction): Promise<void>
   {
     const { authorization } = request.headers as Authentication
-    if(!authorization) throw new UnauthorizedError('Token missing!')
+    if(!authorization) throw new UnauthorizedError('Token missing')
     
     const [ type, token ] = authorization.split(' ')
 
     if(type !== 'Bearer')
-      throw new UnauthorizedError('Necessary Bearer Authentication!')
+      throw new UnauthorizedError('Necessary Bearer Authentication')
 
     const { sub: user_id } = verify(token, AuthConfig.PRIVATE_ACCESS_KEY) as Decoded
     

@@ -1,8 +1,9 @@
 import { inject, injectable } from 'tsyringe'
-import VerificateUser from '../../../../@types/appTypes/accounts/VerificateUser'
-import { BadRequestError } from '../../../../shared/errors/errorsTypes'
-import IUser from '../../interfaces/entities/IUser'
-import IUserRepository from '../../interfaces/repositories/IUserRepository'
+
+import VerificateUser from '@appTypes/accounts/VerificateUser'
+import { BadRequestError } from '@shared/errors/errorsTypes'
+import IUser from '@accounts/interfaces/entities/IUser'
+import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
 
 @injectable()
 class VerifyUserExistsService
@@ -18,7 +19,7 @@ class VerifyUserExistsService
     const userByEmail = this.userRepository.getByEmail(email)
 
     if(!userById && !userByEmail)
-      throw new BadRequestError('User not found!')
+      throw new BadRequestError('User not found')
 
     return userById ?? userByEmail
   }
