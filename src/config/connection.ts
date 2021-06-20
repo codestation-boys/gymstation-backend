@@ -1,3 +1,3 @@
-import Connect from '../shared/infra/database'
+import Connect from '@shared/infra/database'
 
 Connect()

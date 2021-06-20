@@ -1,9 +1,11 @@
 import { Router } from 'express'
 
-import userRoutes from './user.routes'
+import statisticsRoutes from '@shared/infra/http/routes/statistics.routes'
+import accountsRoutes from '@shared/infra/http/routes/accounts.routes'
 
 const rotutes = Router()
 
-rotutes.use('/users', userRoutes)
+rotutes.use('/accounts', accountsRoutes)
+rotutes.use('/statistics', statisticsRoutes)
 
 export default rotutes
