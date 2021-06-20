@@ -1,5 +1,6 @@
-import { Gender } from '@accounts/interfaces/entities/IUser'
 import BodyFatPercentage from '@appTypes/statistics/BodyFatPercentage'
+import { Gender } from '@accounts/interfaces/entities/IUser'
+import Logarithms from '@appTypes/statistics/Logarithms'
 
 class CalculateBodyFatPercentage
 {
@@ -10,9 +11,10 @@ class CalculateBodyFatPercentage
     const logarithmHeight = Math.log10(heightInCentimeters)
     const genderConstants = this.getGenderConstants(gender)
 
-    const variesByGender = genderConstants[0]
-    - (genderConstants[1] * logarithmWaistHipAndNeck)
-    + (genderConstants[2] * logarithmHeight)
+    const variesByGender = this.getCalculationThatVariesByGender(
+      { logarithmWaistHipAndNeck, logarithmHeight },
+      genderConstants
+    )
 
     const equationResult = (495 / (variesByGender)) - 450
 
@@ -27,6 +29,15 @@ class CalculateBodyFatPercentage
     }
 
     return constantsByGender[gender]
+  }
+
+  private getCalculationThatVariesByGender({ logarithmWaistHipAndNeck, logarithmHeight }: Logarithms, genderConstants: number[])
+  {
+    const calculationThatVariesByGender = genderConstants[0]
+    - (genderConstants[1] * logarithmWaistHipAndNeck)
+    + (genderConstants[2] * logarithmHeight)
+
+    return calculationThatVariesByGender
   }
 }
 
