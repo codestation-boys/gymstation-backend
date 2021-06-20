@@ -12,8 +12,8 @@ To carry out the tests, jest was used, the API routes were made using express an
 1 - clone the repository on your machine with `git clone https://github.com/codestation-boys/gymstation-backend`.  
 2 - when opening the project install the dependencies with `npm install` or `yarn`.  
 3 - add the port you want to the `.env` file.  
-4 - after you finish installing the dependencies, you can boot with `docker-compose up`.
-5 - Should appear `server is running...` in your terminal
+4 - after you finish installing the dependencies, you can boot with `docker-compose up`.  
+5 - Should appear `server is running...` in your terminal  
 6 - if everything went well, make a `POST` request for `http://localhost:{port}/accounts` with yout user informations.  
 
 ## Routes
