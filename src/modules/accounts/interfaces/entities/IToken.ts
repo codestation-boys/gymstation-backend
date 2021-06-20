@@ -1,4 +1,4 @@
-import IUser from './IUser'
+import IUser from '@accounts/interfaces/entities/IUser'
 
 interface IToken
 {

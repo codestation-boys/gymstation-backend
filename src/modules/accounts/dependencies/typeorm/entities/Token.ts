@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
 
+import User from '@accounts/dependencies/typeorm/entities/User'
 import IToken from '@accounts/interfaces/entities/IToken'
-import User from './User'
 
 @Entity('tokens')
 class Token implements IToken

@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe'
 
-import Authentication from '@appTypes/accounts/Authentication'
 import CreateAuthenticationService from '@accounts/services/authenticationServices/CreateAuthenticationService'
+import Authentication from '@appTypes/accounts/Authentication'
 
 class CreateAuthenticationController
 {
@@ -11,9 +11,9 @@ class CreateAuthenticationController
     const { authorization } = request.headers as Authentication
 
     const createAuthenticationService = container.resolve(CreateAuthenticationService)
-    const token = await createAuthenticationService.execute({ authorization })
+    const tokens = await createAuthenticationService.execute({ authorization })
 
-    return response.json(token)
+    return response.json(tokens)
   }
 }
 

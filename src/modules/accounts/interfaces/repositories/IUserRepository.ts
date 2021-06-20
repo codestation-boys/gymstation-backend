@@ -1,9 +1,9 @@
+import IUser, { Gender } from '@accounts/interfaces/entities/IUser'
 import CreateUserRepo from '@appTypes/accounts/CreateUserRepo'
-import IUser, { Gender } from '../entities/IUser'
 
 interface IUserRepository
 {
-  create(userInfo: CreateUserRepo): Promise<void>
+  create({ date_birth, name, email, gender, password }: CreateUserRepo): Promise<void>
   getByEmail(email: string): Promise<IUser>
   getById(id: string): Promise<IUser>
   getUserGender(id: string): Promise<Gender>

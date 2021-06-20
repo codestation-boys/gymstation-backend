@@ -1,15 +1,15 @@
 import { inject, injectable } from 'tsyringe'
 import { sign, verify } from 'jsonwebtoken'
 
-import AuthConfig from '@config/AuthConfig'
-import Tokens from '@appTypes/accounts/Tokens'
-import Decoded from '@appTypes/accounts/Decoded'
+import { BadRequestError, NotFoundError, UnauthorizedError } from '@shared/errors/errorsTypes'
 import ITokenRepository from '@accounts/interfaces/repositories/ITokenRepository'
 import IDateProvider from '@shared/container/providers/interfaces/IDateProvider'
-import { BadRequestError, NotFoundError, UnauthorizedError } from '@shared/errors/errorsTypes'
 import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
-import IUser from '@accounts/interfaces/entities/IUser'
 import IToken from '@accounts/interfaces/entities/IToken'
+import IUser from '@accounts/interfaces/entities/IUser'
+import Decoded from '@appTypes/accounts/Decoded'
+import Tokens from '@appTypes/accounts/Tokens'
+import AuthConfig from '@config/AuthConfig'
 
 @injectable()
 class RefreshTokenService
@@ -59,7 +59,7 @@ class RefreshTokenService
   private async verifyUserTokenExists(token: string, user_id: string): Promise<IToken>
   {
     const tokenExists = await this.tokenRepository
-      .findByTokenAndUser({ token, user_id }) 
+      .getByTokenAndUser({ token, user_id }) 
 
     if(!tokenExists) throw new NotFoundError('Refresh token not found')
 

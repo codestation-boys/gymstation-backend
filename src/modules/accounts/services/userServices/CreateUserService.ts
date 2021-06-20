@@ -3,8 +3,8 @@ import { genSalt, hash } from 'bcrypt'
 
 import IDateProvider from '@shared/container/providers/interfaces/IDateProvider'
 import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
-import CreateUser from '@appTypes/accounts/CreateUser'
 import { BadRequestError, ConflictError } from '@shared/errors/errorsTypes'
+import CreateUser from '@appTypes/accounts/CreateUser'
 
 @injectable()
 class CreateUserService

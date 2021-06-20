@@ -1,17 +1,18 @@
-import { compare } from 'bcrypt'
 import { inject, injectable } from 'tsyringe'
 import { sign } from 'jsonwebtoken'
+import { compare } from 'bcrypt'
 
-import AuthConfig from '@config/AuthConfig'
-import Tokens from '@appTypes/accounts/Tokens'
-import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
-import Authentication from '@appTypes/accounts/Authentication'
-import { BadRequestError, UnauthorizedError } from '@shared/errors/errorsTypes'
+
 import ITokenRepository from '@accounts/interfaces/repositories/ITokenRepository'
 import IDateProvider from '@shared/container/providers/interfaces/IDateProvider'
+import { BadRequestError, UnauthorizedError } from '@shared/errors/errorsTypes'
+import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
+import Authentication from '@appTypes/accounts/Authentication'
+import UserDataAndID from '@appTypes/accounts/UserDataAndID'
 import IUser from '@accounts/interfaces/entities/IUser'
 import UserLogin from '@appTypes/accounts/UserLogin'
-import UserDataAndID from '@appTypes/accounts/UserDataAndID'
+import Tokens from '@appTypes/accounts/Tokens'
+import AuthConfig from '@config/AuthConfig'
 
 @injectable()
 class CreateAuthenticationService
@@ -38,12 +39,12 @@ class CreateAuthenticationService
     return { access_token, refresh_token, user_data }
   }
 
-  private protectedAtuhentication(auth: Authentication): void
+  private protectedAtuhentication({ authorization }: Authentication): void
   {
-    if(!auth.authorization)
+    if(!authorization)
       throw new BadRequestError('Necessary authorization field')
 
-    if(typeof auth.authorization !== 'string')
+    if(typeof authorization !== 'string')
       throw new BadRequestError('Authorization must be a hash')
   }
 

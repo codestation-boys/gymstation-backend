@@ -1,9 +1,9 @@
 import { inject, injectable } from 'tsyringe'
 
+import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
 import VerificateUser from '@appTypes/accounts/VerificateUser'
 import { BadRequestError } from '@shared/errors/errorsTypes'
 import IUser from '@accounts/interfaces/entities/IUser'
-import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
 
 @injectable()
 class VerifyUserExistsService

@@ -1,6 +1,8 @@
+import IMatchUserProfile from '@accounts/interfaces/entities/IMatchUserProfiles'
 import ICalculations from '@statistics/interfaces/entities/ICalculations'
+import ILocalization from '@statistics/interfaces/entities/ILocalization'
 import IMeasures from '@statistics/interfaces/entities/IMeasures'
-import IToken from './IToken'
+import IToken from '@accounts/interfaces/entities/IToken'
 
 enum Gender
 {
@@ -18,6 +20,8 @@ class IUser
   calculations: ICalculations[]
   measures: IMeasures[]
   tokens: IToken[]
+  localization: ILocalization
+  matchProfile: IMatchUserProfile
   date_birth: Date
   updated_at: Date
   created_at: Date

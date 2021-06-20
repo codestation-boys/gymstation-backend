@@ -1,9 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, OneToMany } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, OneToMany, OneToOne } from 'typeorm'
 
-import IUser, { Gender } from '@accounts/interfaces/entities/IUser'
-import Measures from '@statistics/dependencies/typeorm/entities/Measures'
+import MatchUserProfile from '@accounts/dependencies/typeorm/entities/MatchUserProfile'
 import Calculations from '@statistics/dependencies/typeorm/entities/Calculations'
-import Token from './Token'
+import Localization from '@statistics/dependencies/typeorm/entities/Localization'
+import Measures from '@statistics/dependencies/typeorm/entities/Measures'
+import IUser, { Gender } from '@accounts/interfaces/entities/IUser'
+import Token from '@accounts/dependencies/typeorm/entities/Token'
 
 @Entity('users')
 class User implements IUser
@@ -34,6 +36,12 @@ class User implements IUser
 
   @OneToMany(() => Token, token => token.user)
   tokens: Token[]
+
+  @OneToOne(() => Localization, localization => localization.user)
+  localization: Localization
+
+  @OneToOne(() =>  MatchUserProfile, matchProfile => matchProfile.user)
+  matchProfile: MatchUserProfile
 
   @UpdateDateColumn()
   updated_at: Date

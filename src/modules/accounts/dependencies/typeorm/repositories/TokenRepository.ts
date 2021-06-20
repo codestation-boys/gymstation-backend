@@ -1,8 +1,8 @@
 import { getRepository, Repository } from 'typeorm'
 
-import Token from '../entities/Token'
-import UsersToken from '@appTypes/accounts/UsersToken'
 import ITokenRepository from '@accounts/interfaces/repositories/ITokenRepository'
+import Token from '@accounts/dependencies/typeorm/entities/Token'
+import UsersToken from '@appTypes/accounts/UsersToken'
 
 class TokenRepository implements ITokenRepository
 {
@@ -19,9 +19,9 @@ class TokenRepository implements ITokenRepository
     await this.repository.save(refresh_token)
   }
   
-  public async findByTokenAndUser({ token, user_id }: UsersToken): Promise<Token>
+  public async getByTokenAndUser(usersToken: UsersToken): Promise<Token>
   {
-    return this.repository.findOne({ token, user_id })
+    return this.repository.findOne(usersToken)
   }
 
   public async deleteById(id: string): Promise<void>
