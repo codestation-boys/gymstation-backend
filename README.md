@@ -24,12 +24,6 @@ This api has public routes and private routes, then there are the categories eac
         ```
         No Body Return for response
         ```
-        - Conflict - `409`
-        ```json
-          {
-            "message": "User already exists"
-          }
-        ```
         - Bad Request - `400`
         ```json
           {
@@ -39,6 +33,12 @@ This api has public routes and private routes, then there are the categories eac
         ```json
           {
             "message": "Necessary correct field types"
+          }
+        ```
+        - Conflict - `409`
+        ```json
+          {
+            "message": "User already exists"
           }
         ```
   `/accounts/login`
@@ -67,12 +67,6 @@ This api has public routes and private routes, then there are the categories eac
         }
         
         ```
-        - Unautorized - `401`
-        ```json
-          {
-            "message": "Invalid email or/and password"
-          }
-        ```
         - Bad Request - `400`
         ```json
           {
@@ -81,12 +75,18 @@ This api has public routes and private routes, then there are the categories eac
         ```
         ```json
           {
-            "message": "Necessary Basic Authentication"
+            "message": "Authorization must be a hash"
           }
         ```
         ```json
           {
-            "message": "Authorization must be a hash"
+            "message": "Necessary Basic Authentication"
+          }
+        ```
+        - Unautorized - `401`
+        ```json
+          {
+            "message": "Invalid email or/and password"
           }
         ```
   `/accounts/refresh-token`
@@ -113,6 +113,12 @@ This api has public routes and private routes, then there are the categories eac
         }
         
         ```
+        - Bad Request - `400`
+        ```json
+          {
+            "message": "Necessary correct field types"
+          }
+        ```
         - Unautorized - `401`
         ```json
           {
@@ -123,6 +129,93 @@ This api has public routes and private routes, then there are the categories eac
         ```json
           {
             "message": "Refresh token not found"
+          }
+        ```
+        ```json
+          {
+            "message": "User not found"
+          }
+        ```
+  `/accounts/match-profile`
+     - `POST` - Create match user profile  
+    **Request Example**  
+        - Body
+          ```json
+            {
+              "objective": "Lose weight",
+              "physical_activity": "Bodybuilding"
+            }
+          ```
+        - Header
+          ```json
+            {
+              "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjM5NTU1MjAsImV4cCI6MTYyMzk1NTU1MCwic3ViIjoiYjQxZGQ0YjUtZGExMS00MWYyLTgwMWMtMDZhMDExMGU3ZGIyIn0.48OQ_3G5PWZAacspWZHOPp5L4On5aIgSPQ3bx0PZ0zI"
+              
+              // Bearer Token
+            }
+          ```
+        **Responses Example**
+        - Created - `201`  
+        ```
+        No Body Return for response
+        ```
+        - Unautorized - `401`
+        ```json
+          {
+            "message": "Token missing"
+          }
+        ```
+        ```json
+          {
+            "message": "Necessary Bearer Authentication"
+          }
+        ```
+        - Conflict - `409`
+        ```json
+          {
+            "message": "User already create match profile"
+          }
+        ```
+     - `GET` - Get match user profile  
+    **Request Example**  
+        - Header
+          ```json
+            {
+              "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjM5NTU1MjAsImV4cCI6MTYyMzk1NTU1MCwic3ViIjoiYjQxZGQ0YjUtZGExMS00MWYyLTgwMWMtMDZhMDExMGU3ZGIyIn0.48OQ_3G5PWZAacspWZHOPp5L4On5aIgSPQ3bx0PZ0zI"
+              
+              // Bearer Token
+            }
+          ```
+        **Responses Example**
+        - OK - `200`  
+        ```json
+        {
+          "physical_activity": "Bodybuilding",
+          "objective": "Lose weight",
+          "updated_at": "2021-06-20T15:08:41.298Z",
+          "created_at": "2021-06-20T15:08:41.298Z",
+          "user": {
+            "name": "Nome Qualquer",
+            "email": "nome@mail.com",
+            "gender": "male"
+          }
+        }
+        ```
+        - Unautorized - `401`
+        ```json
+          {
+            "message": "Token missing"
+          }
+        ```
+        ```json
+          {
+            "message": "Necessary Bearer Authentication"
+          }
+        ```
+        - Not Found - `404`
+        ```json
+          {
+            "message": "Match user profile not found"
           }
         ```
 - ### Statistics
@@ -151,12 +244,6 @@ This api has public routes and private routes, then there are the categories eac
         ```
         No Body Return for response
         ```
-        - Not Found - `404`
-        ```json
-          {
-            "message": "User not found"
-          }
-        ```
         - Unautorized - `401`
         ```json
           {
@@ -177,6 +264,12 @@ This api has public routes and private routes, then there are the categories eac
         ```json
           {
             "message": "Necessary correct field types"
+          }
+        ```
+        - Not Found - `404`
+        ```json
+          {
+            "message": "User not found"
           }
         ```
      - `GET` - Get measures historic 
@@ -276,5 +369,108 @@ This api has public routes and private routes, then there are the categories eac
         ```json
           {
             "message": "Necessary Bearer Authentication"
+          }
+        ```
+  `/statistics/localization`
+     - `POST` - Create user localization  
+    **Request Example**
+        - Body
+          ```json
+            {
+              "latitude": -27.496735899999997,
+              "longitude": -50.1241968
+            }
+          ```
+        - Header
+          ```json
+            {
+              "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjM5NTU1MjAsImV4cCI6MTYyMzk1NTU1MCwic3ViIjoiYjQxZGQ0YjUtZGExMS00MWYyLTgwMWMtMDZhMDExMGU3ZGIyIn0.48OQ_3G5PWZAacspWZHOPp5L4On5aIgSPQ3bx0PZ0zI"
+              
+              // Bearer Token
+            }
+          ```
+        **Responses Example**
+        - Created - `201`  
+        ```
+        No Body Return for response
+        ```
+        - Unautorized - `401`
+        ```json
+          {
+            "message": "Token missing"
+          }
+        ```
+        ```json
+          {
+            "message": "Necessary Bearer Authentication"
+          }
+        ```
+        ```json
+          {
+            "message": "User need match profile"
+          }
+        ```
+         - Conflict - `409`
+        ```json
+          {
+            "message": "User already registered localization"
+          }
+        ```
+     - `GET` - Get users that match nearby profiles  
+    **Request Example**
+        - Header
+          ```json
+            {
+              "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjM5NTU1MjAsImV4cCI6MTYyMzk1NTU1MCwic3ViIjoiYjQxZGQ0YjUtZGExMS00MWYyLTgwMWMtMDZhMDExMGU3ZGIyIn0.48OQ_3G5PWZAacspWZHOPp5L4On5aIgSPQ3bx0PZ0zI"
+              
+              // Bearer Token
+            }
+          ```
+        **Responses Example**
+        - Created - `201`  
+        ```json
+        {
+          "matchedNearProfiles": [
+            {
+              "physical_activity": "Bodybuilding",
+              "objective": "Lose weight",
+              "user": {
+                "name": "Nome Qualquer",
+                "email": "nome@mail.com",
+                "gender": "male"
+              }
+            },
+            {
+              "physical_activity": "marathon",
+              "objective": "get out of a sedentary lifestyle",
+              "user": {
+                "name": "Nome Qualquer 2",
+                "email": "nome@mail2.com",
+                "gender": "female"
+              }
+            }
+          ]
+        }
+        ```
+        - Unautorized - `401`
+        ```json
+          {
+            "message": "Token missing"
+          }
+        ```
+        ```json
+          {
+            "message": "Necessary Bearer Authentication"
+          }
+        ```
+        ```json
+          {
+            "message": "User needs localization"
+          }
+        ```
+         - Not Found - `404`
+        ```json
+          {
+            "message": "User match profile not found"
           }
         ```
