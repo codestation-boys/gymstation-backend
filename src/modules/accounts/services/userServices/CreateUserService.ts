@@ -1,5 +1,5 @@
 import { injectable, inject } from 'tsyringe'
-import { genSalt, hash } from 'bcrypt'
+import { genSalt, hash } from 'bcryptjs'
 
 import IDateProvider from '@shared/container/providers/interfaces/IDateProvider'
 import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
