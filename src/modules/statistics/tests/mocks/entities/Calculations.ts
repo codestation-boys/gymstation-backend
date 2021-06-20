@@ -1,6 +1,6 @@
 import ICalculations from '@statistics/interfaces/entities/ICalculations'
+import Measures from '@statistics/tests/mocks/entities/Measures'
 import User from '@accounts/tests/mocks/entities/User'
-import Measures from './Measures'
 
 class Calculations implements ICalculations
 {
