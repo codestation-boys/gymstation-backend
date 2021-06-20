@@ -1,14 +1,14 @@
 import { inject, injectable } from 'tsyringe'
 
-import CreateCalculations from '@appTypes/statistics/CreateCalculations'
-import { Gender } from '@accounts/interfaces/entities/IUser'
-import IMeasures from '@statistics/interfaces/entities/IMeasures'
 import ICalculationsRepository from '@statistics/interfaces/repositories/ICalculationsRepository'
 import calculateBodyFatPercentage from '@utils/CalculateBodyFatPercentage'
+import CreateCalculations from '@appTypes/statistics/CreateCalculations'
 import calculateBodyMassIndex from '@utils/CalculateBodyMassIndex'
+import IMeasures from '@statistics/interfaces/entities/IMeasures'
+import { Gender } from '@accounts/interfaces/entities/IUser'
+import { BadRequestError } from '@shared/errors/errorsTypes'
 import calculateLeanMass from '@utils/CalculateLeanMass'
 import calculateFatMass from '@utils/CalculateFatMass'
-import { BadRequestError } from '@shared/errors/errorsTypes'
 
 @injectable()
 class CreateCalculationsService
@@ -29,7 +29,7 @@ class CreateCalculationsService
   private doAllCalculations({ height, hip, waist, neck, weight }: IMeasures, gender: Gender): CreateCalculations
   {
     const body_fat_percentage = calculateBodyFatPercentage
-      .execute({height, hip, waist, neck }, gender)
+      .execute({ height, hip, waist, neck }, gender)
     
     const body_mass_index = calculateBodyMassIndex
       .execute({ height, weight })
@@ -47,9 +47,9 @@ class CreateCalculationsService
       fat_mass
     ]
 
-    const someCalculatioWasNegativeOrNull = calculations.some(calc => calc <= 0)
+    const someCalculationWasNegativeOrNull = calculations.some(calc => calc <= 0)
     
-    if(someCalculatioWasNegativeOrNull)
+    if(someCalculationWasNegativeOrNull)
       throw new BadRequestError('Some measure is unrealistic')     
 
     return { body_fat_percentage, body_mass_index, lean_mass, fat_mass }

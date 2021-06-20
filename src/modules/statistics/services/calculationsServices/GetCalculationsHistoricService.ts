@@ -1,8 +1,8 @@
 import { inject, injectable } from 'tsyringe'
 
+import ICalculationsRepository from '@statistics/interfaces/repositories/ICalculationsRepository'
 import HistoricCalculationsWithUnits from '@appTypes/statistics/HistoricCalculationsWithUnits'
 import UnitsMeasure from '@appTypes/statistics/UnitsMeasure'
-import ICalculationsRepository from '@statistics/interfaces/repositories/ICalculationsRepository'
 
 @injectable()
 class GetCalculationsHistoricService
@@ -17,7 +17,6 @@ class GetCalculationsHistoricService
     const unitsMeasure = this.getUnisMeasure()
     const historicCalculations = await this.calculationsRepository
       .getCalculationsHistoric(user_id)
-
 
     return { unitsMeasure, historicCalculations }
   }

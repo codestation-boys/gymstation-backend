@@ -1,8 +1,8 @@
 import { getRepository, Repository } from 'typeorm'
 
-import CreateCalculations from '@appTypes/statistics/CreateCalculations'
 import ICalculationsRepository from '@statistics/interfaces/repositories/ICalculationsRepository'
-import Calculations from '../entities/Calculations'
+import Calculations from '@statistics/dependencies/typeorm/entities/Calculations'
+import CreateCalculations from '@appTypes/statistics/CreateCalculations'
 
 class CalculationsRepository implements ICalculationsRepository
 {

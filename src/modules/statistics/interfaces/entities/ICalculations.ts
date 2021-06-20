@@ -1,5 +1,5 @@
+import IMeasures from '@statistics/interfaces/entities/IMeasures'
 import IUser from '@accounts/interfaces/entities/IUser'
-import IMeasures from './IMeasures'
 
 interface ICalculations
 {

@@ -1,8 +1,8 @@
 import { getRepository, Repository } from 'typeorm'
 
 import IMeasuresRepository from '@statistics/interfaces/repositories/IMeasuresRepository'
+import Measures from '@statistics/dependencies/typeorm/entities/Measures'
 import CreateMeasures from '@appTypes/statistics/CreateMeasures'
-import Measures from '../entities/Measures'
 import { Gender } from '@accounts/interfaces/entities/IUser'
 
 class MeasuresRepostiory implements IMeasuresRepository

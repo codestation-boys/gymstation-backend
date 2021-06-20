@@ -1,9 +1,8 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
 
 import ICalculations from '@statistics/interfaces/entities/ICalculations'
+import Measures from '@statistics/dependencies/typeorm/entities/Measures'
 import User from '@accounts/dependencies/typeorm/entities/User'
-import Measures from './Measures'
-
 
 @Entity()
 class Calculations implements ICalculations

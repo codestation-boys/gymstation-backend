@@ -1,10 +1,12 @@
 import { container, inject, injectable } from 'tsyringe'
 
-import CreateMeasures from '@appTypes/statistics/CreateMeasures'
-import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
+import CreateCalculationsService from '@statistics/services/calculationsServices/CreateCalculationsService'
 import IMeasuresRepository from '@statistics/interfaces/repositories/IMeasuresRepository'
-import CreateCalculationsService from '../calculationsServices/CreateCalculationsService'
-import { BadRequestError, NotFoundError } from '@shared/errors/errorsTypes'
+import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
+import IMeasures from '@statistics/interfaces/entities/IMeasures'
+import CreateMeasures from '@appTypes/statistics/CreateMeasures'
+import { BadRequestError } from '@shared/errors/errorsTypes'
+import { Gender } from '@accounts/interfaces/entities/IUser'
 
 @injectable()
 class CreateMeasuresService
@@ -20,14 +22,12 @@ class CreateMeasuresService
   {
     this.protectedCreateMeasures(measures)
 
-    const userExists = await this.userRepository.getById(user_id)
-    if(!userExists) throw new NotFoundError('User not found')
-
+    const gender = await this.getUserGender(user_id)
+    
     const newMeasures = await this.measuresRepository
       .create(measures, user_id)
 
-    const createCalculationsService = container.resolve(CreateCalculationsService)
-    await createCalculationsService.execute(newMeasures, userExists.gender)
+    await this.createCalculations(newMeasures, gender)
   }
 
   private protectedCreateMeasures(measures: CreateMeasures)
@@ -37,7 +37,7 @@ class CreateMeasuresService
       || !measures.weight
       || !measures.neck
 
-    const someFieldIsNotString = typeof measures.height !== 'number'
+    const someFieldIsNaN = typeof measures.height !== 'number'
       || typeof measures.height !== 'number'
       || typeof measures.waist !== 'number'
       || typeof measures.weight !== 'number'
@@ -46,8 +46,21 @@ class CreateMeasuresService
     if(someFieldIsNull)
       throw new BadRequestError('Necessary all fields')
     
-    if(someFieldIsNotString)
+    if(someFieldIsNaN)
       throw new BadRequestError('Necessary correct field types')
+  }
+
+  private async getUserGender(user_id: string): Promise<Gender>
+  {
+    const user = await this.userRepository.getById(user_id)
+
+    return user.gender
+  }
+
+  private async createCalculations(newMeasures: IMeasures, gender: Gender)
+  {
+    const createCalculationsService = container.resolve(CreateCalculationsService)
+    await createCalculationsService.execute(newMeasures, gender)
   }
 }
 
