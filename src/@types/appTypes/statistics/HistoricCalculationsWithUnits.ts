@@ -1,5 +1,5 @@
 import ICalculations from '@statistics/interfaces/entities/ICalculations'
-import UnitsMeasure from './UnitsMeasure'
+import UnitsMeasure from '@appTypes/statistics/UnitsMeasure'
 
 interface HistoricCalculationsWithUnits
 {

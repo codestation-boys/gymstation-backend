@@ -1,5 +1,5 @@
 import IMeasures from '@statistics/interfaces/entities/IMeasures'
-import UnitsMeasure from './UnitsMeasure'
+import UnitsMeasure from '@appTypes/statistics/UnitsMeasure'
 
 interface MeasuresWithUnits
 {
