@@ -1,7 +1,8 @@
 .gitignore
+.git
+.vscode
 README.md
-node_modules/
-src/modules/**/tests
+node_modules
 jest.config.ts
 jest.setup.ts
 .env-example
