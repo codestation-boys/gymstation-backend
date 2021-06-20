@@ -6,7 +6,7 @@
   "author": "ArturHamannRonconi <arturhronconi@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "dayjs": "^1.10.5",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
@@ -17,7 +17,7 @@
     "typeorm": "^0.2.34"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.0",
+    "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.12",
     "@types/jest": "^26.0.23",
     "@types/jsonwebtoken": "^8.5.1",

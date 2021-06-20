@@ -1,7 +1,6 @@
 import { inject, injectable } from 'tsyringe'
 import { sign } from 'jsonwebtoken'
-import { compare } from 'bcrypt'
-
+import { compare } from 'bcryptjs'
 
 import ITokenRepository from '@accounts/interfaces/repositories/ITokenRepository'
 import IDateProvider from '@shared/container/providers/interfaces/IDateProvider'
