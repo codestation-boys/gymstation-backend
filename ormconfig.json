@@ -4,7 +4,7 @@
   "port": 5432,
   "username": "docker",
   "password": "password",
-  "database": "gym_app",
+  "database": "gymstations_app",
   "migrations": ["src/shared/infra/database/migrations/*.ts"],
   "entities": ["src/modules/**/dependencies/typeorm/entities/*.ts"],
   "cli": {
