@@ -1,5 +1,5 @@
 import IToken from '@accounts/interfaces/entities/IToken'
-import User from './User'
+import User from '@accounts/tests/mocks/entities/User'
 
 class Token implements IToken
 {

@@ -1,38 +1,37 @@
-import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
 import VerifyUserExistsService from '@accounts/services/userServices/VerifyUserExistsService'
+import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
 import UserRepository from '@accounts/tests/mocks/repositories/UserRepository'
+import VerificateUser from '@appTypes/accounts/VerificateUser'
 import { BadRequestError } from '@shared/errors/errorsTypes'
+import prePreparedData from '@utils/PrePreparedData'
 
 describe('Verify User Exists Unit Tests', () => {
   let verifyUserExistsService: VerifyUserExistsService
+  let invalidEmailAndUserId: VerificateUser
   let userRepository: IUserRepository 
-
-  
-  const user_id = 'f9c2f69c-c0d3-4584-9dc7-efc01704decf'
-  const email = 'nome2@mail.com'
-  const invalidEmailAndUserId = {
-    email: 'email that not exists',
-    user_id: 'user_id that not exists'
-  }
+  let user_id: string  
+  let email: string
 
   beforeAll(() => {
     userRepository = new UserRepository()
     verifyUserExistsService = new VerifyUserExistsService(userRepository)
+
+    user_id = prePreparedData.getUserId()
+    email = prePreparedData.getEmail()
+    invalidEmailAndUserId = prePreparedData.getInvalidEmailAndUserId()
   })
 
   it('Should be able to ensure user existence by ID', async () => {
     const user = await verifyUserExistsService.execute({ user_id })
 
-    expect(user).toHaveProperty('gender', 'male')
     expect(user).toHaveProperty('id', user_id)
-    expect(user).toHaveProperty('email', 'nome@mail.com')
+    expect(user).toHaveProperty('email', email)
   })
   
   it('Should be able to ensure user existence by email', async () => {
     const user = await verifyUserExistsService.execute({ email })
   
-    expect(user).toHaveProperty('gender', 'female')
-    expect(user).toHaveProperty('id', '8db29bed-6c41-4ad5-b3c0-434a1fe4a089')
+    expect(user).toHaveProperty('id', user_id)
     expect(user).toHaveProperty('email', email)
   })
   
@@ -42,6 +41,6 @@ describe('Verify User Exists Unit Tests', () => {
       .toThrow('User not found')
     await expect(verifyUserExistsService.execute(invalidEmailAndUserId))
       .rejects
-      .toBeInstanceOf(BadRequestError)
+      .toThrow(BadRequestError)
   })
 })

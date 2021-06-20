@@ -1,7 +1,9 @@
-import IUser, { Gender } from '@accounts/interfaces/entities/IUser'
-import Token from './Token'
-import Measures from '@statistics/tests/mocks/entities/Measures'
+import MatchUserProfile from '@accounts/tests/mocks/entities/MatchUserProfile'
 import Calculations from '@statistics/tests/mocks/entities/Calculations'
+import Localization from '@statistics/tests/mocks/entities/Localization'
+import IUser, { Gender } from '@accounts/interfaces/entities/IUser'
+import Measures from '@statistics/tests/mocks/entities/Measures'
+import Token from '@accounts/tests/mocks/entities/Token'
 
 class User implements IUser
 {
@@ -13,6 +15,8 @@ class User implements IUser
   calculations: Calculations[]
   measures: Measures[]
   tokens: Token[]
+  localization: Localization
+  matchProfile: MatchUserProfile
   date_birth: Date
   updated_at: Date
   created_at: Date

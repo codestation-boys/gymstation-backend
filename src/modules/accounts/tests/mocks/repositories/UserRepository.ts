@@ -3,7 +3,7 @@ import { v4 as generateUUID } from 'uuid'
 import IUserRepository from '@accounts/interfaces/repositories/IUserRepository'
 import CreateUserRepo from '@appTypes/accounts/CreateUserRepo'
 import { Gender } from '@accounts/interfaces/entities/IUser'
-import User from '../entities/User'
+import User from '@accounts/tests/mocks/entities/User'
 
 class UserRepository implements IUserRepository
 {

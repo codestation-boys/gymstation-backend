@@ -1,42 +1,24 @@
-import request from 'supertest'
 import { Connection } from 'typeorm'
+import request from 'supertest'
 
+import CreateUser from '@appTypes/accounts/CreateUser'
+import prePreparedData from '@utils/PrePreparedData'
 import Connect from '@shared/infra/database'
 import app from '@shared/infra/http/app'
 
 describe('Create User Integration Tests', () => {
+  let userWithIncorrectTypeFields: Object
+  let userWithNullableFields: CreateUser
   let connection: Connection
+  let user: CreateUser
 
-  const user = {
-    name: 'Nome Qualquer',
-    email: 'nome@mail.com',
-    password: '123456',
-    gender: 'male',
-    date_birth: '2021-06-15T16:51:15.837Z'
-  }
-  const userWithNullableFields = {
-    name: null,
-    email: 'nome@mail.com',
-    password: '123456',
-    gender: 'male',
-    date_birth: '2021-06-15T16:51:15.837Z'
-  }
-  const userWithIncorrectTypeFields = {
-    name: 'Nome Qualquer',
-    email: 'nome@mail.com',
-    password: 123456,
-    gender: true,
-    date_birth: '2021-06-15T16:51:15.837Z'
-  }
-  const userAlreadyExists = {
-    name: 'Nome Qualquer',
-    email: 'nome@mail.com',
-    password: '123456',
-    gender: 'male',
-    date_birth: '2021-06-15T16:51:15.837Z'
-  }
+  beforeAll(async () => {
+    connection = await Connect()
 
-  beforeAll(async () => connection = await Connect())
+    user = prePreparedData.getUser()
+    userWithNullableFields = prePreparedData.getUserWithNullableFields()
+    userWithIncorrectTypeFields = prePreparedData.getUserWithIncorrectTypeFields()
+  })
   afterAll(async () => {
     await connection.dropDatabase()
     await connection.close()
@@ -70,7 +52,7 @@ describe('Create User Integration Tests', () => {
   it('Should not be able to create user if user already exists', async () => {
     const response = await request(app)
       .post('/accounts')
-      .send(userAlreadyExists)
+      .send(user)
       .expect(409)
 
     expect(response.body.message).toBe('User already exists')

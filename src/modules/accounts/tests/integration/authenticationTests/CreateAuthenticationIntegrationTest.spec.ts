@@ -1,31 +1,27 @@
-import request from 'supertest'
 import { Connection } from 'typeorm'
+import request from 'supertest'
 
+import PrepareEnviroment from '@utils/PrepareEnviroment'
+import CreateUser from '@appTypes/accounts/CreateUser'
+import prePreparedData from '@utils/PrePreparedData'
 import Connect from '@shared/infra/database'
 import app from '@shared/infra/http/app'
 
 describe('Create User Authentication Integration Tests', () => {
+  let invalidPassword: string
   let connection: Connection
-
-  const user_data = {
-    name: 'Nome Qualquer',
-    email: 'nome@mail.com',
-    gender: 'male',
-    date_birth: '2021-06-15T16:51:15.837Z'
-  }
-  const user = {
-    ...user_data,
-    password: '123456'
-  }
-  const invalidPassword = user.password.split('').reverse().join('')
-  const invalidEmail = user.email.split('').reverse().join('')
+  let invalidEmail: string
+  let user: CreateUser
 
   beforeAll(async () => {
     connection = await Connect()
-    await request(app)
-      .post('/accounts')
-      .send(user)
-
+    const prepare = new PrepareEnviroment(app)
+    
+    user = prePreparedData.getUser() 
+    invalidPassword = prePreparedData.getInvalidPassword()
+    invalidEmail = prePreparedData.getInvalidEmail()
+    
+    await prepare.createUser(user)
   })
   afterAll(async () => {
     await connection.dropDatabase()
@@ -38,7 +34,7 @@ describe('Create User Authentication Integration Tests', () => {
       .auth(user.email, user.password)
       .expect(200)
 
-    expect(repsonse.body).toHaveProperty('user_data', user_data)
+    expect(repsonse.body).toHaveProperty('user_data')
     expect(repsonse.body).toHaveProperty('access_token')
     expect(repsonse.body).toHaveProperty('refresh_token')
   })

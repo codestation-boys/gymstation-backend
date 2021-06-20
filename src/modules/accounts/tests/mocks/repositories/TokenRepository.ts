@@ -1,8 +1,8 @@
 import { v4 as generateUUID } from 'uuid'
 
 import ITokenRepository from '@accounts/interfaces/repositories/ITokenRepository'
+import Token from '@accounts/tests/mocks/entities/Token'
 import UsersToken from '@appTypes/accounts/UsersToken'
-import Token from '../entities/Token'
 
 class TokenRepository implements ITokenRepository
 {
@@ -24,7 +24,7 @@ class TokenRepository implements ITokenRepository
     this.repository.push(token)
   }
 
-  public async findByTokenAndUser({ token, user_id }: UsersToken): Promise<Token>
+  public async getByTokenAndUser({ token, user_id }: UsersToken): Promise<Token>
   {
     return this.repository.find(refresh_token =>
       refresh_token.token === token &&

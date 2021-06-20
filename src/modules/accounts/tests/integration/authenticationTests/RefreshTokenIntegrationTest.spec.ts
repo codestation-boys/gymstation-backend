@@ -1,42 +1,30 @@
-import request from 'supertest'
 import { Connection } from 'typeorm'
+import request from 'supertest'
 
+import PrepareEnviroment from '@utils/PrepareEnviroment'
+import prePreparedData from '@utils/PrePreparedData'
 import Connect from '@shared/infra/database'
 import app from '@shared/infra/http/app'
+import fakeTimes from '@utils/FakeTimes'
 
 describe('Refresh Token Integration Tests', () => {
   let connection: Connection
   let refresh_token: string
-
-
-  const expired_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjQwNDE2NTEsImV4cCI6MTYyNDA0MTY1Mywic3ViIjoiYjFjMGRjZmItNjgxNi00ODEzLTg1NDgtOGI2OWM1MmYyOTI0In0.gD8wdLdMt3uQPQ-NaIN2O1jonrl8ZM-NvPjBjEdBlhU'
-  const invalid_token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
-  .eyJpYXQiOjE2MjQwNDE2NTEsImV4cCI6MTYyNDA0MTY1Mywic3ViIjoiYjFjMGRjZmItNjgxNi00ODEzLTg1NDgtOGI2OWM1MmYyOTI0In0
-  .gD8wdLdMt3uQPQ-NaIN2O1jonrl8ZM-NvPjBjEdBlhU`
-
-  const user_data = {
-    name: 'Nome Qualquer',
-    email: 'nome@mail.com',
-    gender: 'male',
-    date_birth: '2021-06-15T16:51:15.837Z'
-  }
-  const user = {
-    ...user_data,
-    password: '123456'
-  }
+  let expired_token: string
+  let invalid_token: string
 
   beforeAll(async () => {
     connection = await Connect()
+    const prepare = new PrepareEnviroment(app)
     
-    await request(app)
-      .post('/accounts')
-      .send(user)
-
-    const response = await request(app)
-      .post('/accounts/login')
-      .auth(user.email, user.password)
-
-      refresh_token = response.body.refresh_token
+    const user = prePreparedData.getUser()
+    expired_token = prePreparedData.getExpiredRefreshToken()
+    invalid_token = prePreparedData.getInvalidRefreshToken()
+    
+    await prepare.createUser(user)
+    refresh_token = await prepare.getRefreshToken(user.email, user.password)
+    
+    await fakeTimes.takeOneSecond()
   })
   afterAll(async () => {
     await connection.dropDatabase()
@@ -49,7 +37,7 @@ describe('Refresh Token Integration Tests', () => {
       .send({ refresh_token })
       .expect(200)
 
-    expect(response.body).toHaveProperty('user_data', user_data)
+    expect(response.body).toHaveProperty('user_data')
     expect(response.body).toHaveProperty('access_token')
     expect(response.body).toHaveProperty('refresh_token')
   })
@@ -58,7 +46,7 @@ describe('Refresh Token Integration Tests', () => {
     const response = await request(app)
       .post('/accounts/refresh-token')
       .send({ refresh_token: expired_token })
-      .expect(500)
+      .expect(400)
 
     expect(response.body.message).toBe('jwt expired')
   })
@@ -67,7 +55,7 @@ describe('Refresh Token Integration Tests', () => {
     const response = await request(app)
       .post('/accounts/refresh-token')
       .send({ refresh_token: 'expired_token' })
-      .expect(500)
+      .expect(400)
 
     expect(response.body.message).toBe('jwt malformed')
   })
@@ -76,8 +64,19 @@ describe('Refresh Token Integration Tests', () => {
     const response = await request(app)
       .post('/accounts/refresh-token')
       .send({ refresh_token: invalid_token })
-      .expect(500)
+      .expect(400)
 
     expect(response.body.message).toBe('invalid token')
+  })
+
+  it('Should not be able to refresh user token if token not found', async () => {
+    await fakeTimes.takeOneSecond()
+
+    const response = await request(app)
+      .post('/accounts/refresh-token')
+      .send({ refresh_token })
+      .expect(404)
+      
+    expect(response.body.message).toBe('Refresh token not found')
   })
 })
