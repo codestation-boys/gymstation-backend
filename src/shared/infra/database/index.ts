@@ -9,7 +9,7 @@ export default async (): Promise<Connection> =>  {
       port: 5433,
       username: 'docker_test',
       password: 'password_test',
-      database: 'gym_app_test',
+      database: 'gymstations_app_test',
     })
   
   

@@ -2,7 +2,7 @@ import express from 'express'
 import 'express-async-errors'
 
 import '@shared/container'
-import routes from './routes'
+import routes from '@shared/infra/http/routes'
 import errorHandler from '@shared/errors/ErrorHandler'
 
 const app = express()

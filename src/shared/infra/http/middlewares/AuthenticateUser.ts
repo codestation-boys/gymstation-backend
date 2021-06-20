@@ -2,11 +2,11 @@ import { NextFunction, Request, Response } from 'express'
 import { verify } from 'jsonwebtoken'
 import { container } from 'tsyringe'
 
+import VerifyUserExistsService from '@accounts/services/userServices/VerifyUserExistsService'
 import Authentication from '@appTypes/accounts/Authentication'
+import { UnauthorizedError } from '@shared/errors/errorsTypes'
 import Decoded from '@appTypes/accounts/Decoded'
 import AuthConfig from '@config/AuthConfig'
-import VerifyUserExistsService from '@accounts/services/userServices/VerifyUserExistsService'
-import { UnauthorizedError } from '@shared/errors/errorsTypes'
 
 class AuthenticateUser
 {

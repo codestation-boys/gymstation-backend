@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
-import accountsRoutes from './accounts.routes'
-import statisticsRoutes from './statistics.routes'
+import statisticsRoutes from '@shared/infra/http/routes/statistics.routes'
+import accountsRoutes from '@shared/infra/http/routes/accounts.routes'
 
 const rotutes = Router()
 

@@ -1,5 +1,5 @@
 
-import AppError from './AppError'
+import AppError from '@shared/errors/errorsTypes/AppError'
 
 class ConflictError extends AppError
 {
