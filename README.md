@@ -1,7 +1,20 @@
 # Gymstation API
 
 ## Description
-API description...
+The project is intended to help people who want to start exercising but end up losing interest when they try to do everything on their own, this app will help the user to find nearby people who match their profile to exercise or play sports, the app will also help the user by giving information about fat calculations and body mass.
+
+## Techs
+The technologies used in the back end of this project are diverse, starting with the database, only one database was used (postgres),
+to make the database communication typeorm was used, to separate the responsibilities three docker containers were made, one for the development database, one for the test database and the last one for the project files.
+To carry out the tests, jest was used, the API routes were made using express and the authentication routes use the json web token to provide the user with two tokens, one for access and one for refresh
+
+## Getting Started
+1 - clone the repository on your machine with `git clone https://github.com/codestation-boys/gymstation-backend`.  
+2 - when opening the project install the dependencies with `npm install` or `yarn`.  
+3 - add the port you want to the `.env` file.  
+4 - after you finish installing the dependencies, you can boot with `docker-compose up`.  
+5 - Should appear `server is running...` in your terminal  
+6 - if everything went well, make a `POST` request for `http://localhost:{port}/accounts` with yout user informations.  
 
 ## Routes
 This api has public routes and private routes, then there are the categories each route fits into.
@@ -469,4 +482,8 @@ This api has public routes and private routes, then there are the categories eac
           {
             "message": "User match profile not found"
           }
-        ```
+        ```  
+        
+## Future implementations
+- Deploy with AWS
+- Integration with Google maps API
