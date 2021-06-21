@@ -442,9 +442,8 @@ This api has public routes and private routes, then there are the categories eac
         **Responses Example**
         - Created - `201`  
         ```json
-        {
-            "matchedNearProfiles": {
-              "matchProfiles": [
+           {
+              matchProfiles": [
                 {
                   "physical_activity": "Bodybuilding",
                   "objective": "Lose weight",
@@ -454,12 +453,8 @@ This api has public routes and private routes, then there are the categories eac
                     "gender": "male"
                   }
                 }
-              ],
-              "distances": [
-                0
-              ]
-            }
-          }
+              ]  
+           }
         ```
         - Unautorized - `401`
         ```json
