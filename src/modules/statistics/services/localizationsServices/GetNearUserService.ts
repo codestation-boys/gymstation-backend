@@ -3,8 +3,8 @@ import { inject, injectable } from 'tsyringe'
 import IMatchUserProfileRepository from '@accounts/interfaces/repositories/IMatchUserProfileRepository'
 import ILocalizationRepository from '@statistics/interfaces/repositories/ILocalizationRepository'
 import calculateDistanceBetweenLocalizations from '@utils/CalculateDistanceBetweenLocalizations'
-import IMatchUserProfile from '@accounts/interfaces/entities/IMatchUserProfiles'
 import { NotFoundError, UnauthorizedError } from '@shared/errors/errorsTypes'
+import ProfilesAndDistances from '@appTypes/statistics/ProfilesAndDistances'
 import ILocalization from '@statistics/interfaces/entities/ILocalization'
 
 @injectable()
@@ -17,7 +17,7 @@ class GetNearUserService
     private matchUserProfileRepository: IMatchUserProfileRepository
   ) {  }
 
-  public async execute(user_id: string): Promise<IMatchUserProfile[]>
+  public async execute(user_id: string): Promise<ProfilesAndDistances>
   {
     await this.verifyUserHasMatchProfile(user_id)
     const userLocalization = await this
@@ -25,7 +25,7 @@ class GetNearUserService
     const localizations = await this.localizationRepository
       .getAllLocalizationsExceptUserId(user_id)
 
-    const nearUsers = this.calculateDistanceAllUsers(
+    const nearUsers = await this.calculateDistanceAllUsers(
       userLocalization,
       localizations
     )
@@ -58,9 +58,9 @@ class GetNearUserService
   private async calculateDistanceAllUsers(
     userLocalization: ILocalization,
     otherLocalizations: ILocalization[]
-  ): Promise<IMatchUserProfile[]>
+  ): Promise<ProfilesAndDistances>
   {
-    const userIdsThatAreNear = otherLocalizations.reduce((usersIds, localization) => {
+    const userIdsThatAreNearAndDistances = otherLocalizations.reduce((usersIds, localization) => {
       const OneKilometer = 1
       const distance =
         calculateDistanceBetweenLocalizations
@@ -76,16 +76,22 @@ class GetNearUserService
         )
 
       if(distance <= OneKilometer)
-        usersIds.push(localization.user_id)
+        usersIds.push({ user_id: localization.user_id, distance })
 
       return usersIds
     }, [])
 
+    const userIdsThatAreNear = userIdsThatAreNearAndDistances
+      .map(idAndDistance => idAndDistance.user_id)
+    
+    const distances = userIdsThatAreNearAndDistances
+      .map(idAndDistance => idAndDistance.distance)
+
     const matchProfiles = await this
       .matchUserProfileRepository
       .getManyByUserID(userIdsThatAreNear)
-
-    return matchProfiles
+ 
+    return { matchProfiles, distances }
   }
 }
 
