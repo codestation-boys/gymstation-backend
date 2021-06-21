@@ -9,13 +9,6 @@ class CreateUserController
   {
     const { name, email, password, gender, date_birth } = request.body
 
-    console.log(request.headers)
-    console.log(request.body)
-    console.log(request.params)
-    console.log(request.query)
-
-    console.log({ name, email, password, gender, date_birth })
-
     const createUserService = container.resolve(CreateUserService)
     await createUserService.execute({
       name, email,

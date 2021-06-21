@@ -81,6 +81,9 @@ class GetNearUserService
       return usersIds
     }, [])
 
+    if(userIdsThatAreNear)
+      throw new NotFoundError('None user found')
+
     const matchProfiles = await this
       .matchUserProfileRepository
       .getManyByUserID(userIdsThatAreNear)

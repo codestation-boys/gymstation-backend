@@ -443,27 +443,23 @@ This api has public routes and private routes, then there are the categories eac
         - Created - `201`  
         ```json
         {
-          "matchedNearProfiles": [
-            {
-              "physical_activity": "Bodybuilding",
-              "objective": "Lose weight",
-              "user": {
-                "name": "Nome Qualquer",
-                "email": "nome@mail.com",
-                "gender": "male"
-              }
-            },
-            {
-              "physical_activity": "marathon",
-              "objective": "get out of a sedentary lifestyle",
-              "user": {
-                "name": "Nome Qualquer 2",
-                "email": "nome@mail2.com",
-                "gender": "female"
-              }
+            "matchedNearProfiles": {
+              "matchProfiles": [
+                {
+                  "physical_activity": "Bodybuilding",
+                  "objective": "Lose weight",
+                  "user": {
+                    "name": "Nome Qualquer",
+                    "email": "nome@mail.com",
+                    "gender": "male"
+                  }
+                }
+              ],
+              "distances": [
+                0
+              ]
             }
-          ]
-        }
+          }
         ```
         - Unautorized - `401`
         ```json
